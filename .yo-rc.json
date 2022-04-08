@@ -1,0 +1,32 @@
+{
+  "generator-ngx-rocket": {
+    "version": "10.1.2",
+    "props": {
+      "location": "path",
+      "strict": true,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "quiero jugar app",
+      "target": ["web", "cordova"],
+      "mobile": ["ios", "android"],
+      "ui": "bootstrap",
+      "features": ["pwa", "auth", "lazy", "cypress", "angulartics"],
+      "languages": ["en-US", "es-ES"],
+      "analyticsProvider": "gtm",
+      "tools": ["prettier", "hads", "compodoc"],
+      "utility": ["datefns"],
+      "deploy": "firebase",
+      "projectName": "quiero-jugar-app",
+      "packageManager": "npm",
+      "desktop": [],
+      "pwa": true,
+      "auth": true,
+      "lazy": true,
+      "e2e": false,
+      "cypress": true,
+      "angulartics": true
+    }
+  }
+}
