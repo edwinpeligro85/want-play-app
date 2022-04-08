@@ -552,11 +552,11 @@ a:hover {
   bottom: 0;
 }
 .sign-in-page {
-  background: #00adef;
-  background: -moz-linear-gradient(-45deg, #00adef 0%, #0076e5 100%);
-  background: -webkit-linear-gradient(-45deg, #00adef 0%, #0076e5 100%);
-  background: linear-gradient(135deg, #00adef 0%, #0076e5 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adef', endColorstr='#0076e5', GradientType=1);
+  background: #00a74ba1;
+  background: -moz-linear-gradient(-45deg, #00a74ba1 0%, #00a74a 100%);
+  background: -webkit-linear-gradient(-45deg, #00a74ba1 0%, #00a74a 100%);
+  background: linear-gradient(135deg, #00a74ba1 0%, #00a74a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00a74ba1', endColorstr='#00A74A', GradientType=1);
   position: relative;
   overflow: hidden;
   height: 100vh;

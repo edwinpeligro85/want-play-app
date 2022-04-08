@@ -2,3 +2,10 @@
  * Global application theme.
  * Framework overrides and customization goes here.
  */
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  color: #fff;
+  background-color: var(--iq-primary);
+  border-color: var(--iq-primary);
+}

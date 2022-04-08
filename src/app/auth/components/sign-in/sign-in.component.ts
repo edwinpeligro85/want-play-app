@@ -5,20 +5,20 @@ import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@shared';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '@app/auth/authentication.service';
 
-const log = new Logger('Login');
+const log = new Logger('SignIn');
 
 @UntilDestroy()
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class SignInComponent implements OnInit {
   version: string | null = environment.version;
   error: string | undefined;
-  loginForm!: FormGroup;
+  signInForm!: FormGroup;
   isLoading = false;
 
   constructor(
@@ -34,32 +34,32 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.loginForm.value);
+    const login$ = this.authenticationService.login(this.signInForm.value);
     login$
       .pipe(
         finalize(() => {
-          this.loginForm.markAsPristine();
+          this.signInForm.markAsPristine();
           this.isLoading = false;
         }),
         untilDestroyed(this)
       )
-      .subscribe(
-        (credentials) => {
+      .subscribe({
+        next: (credentials) => {
           log.debug(`${credentials.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams['redirect'] || '/'], { replaceUrl: true });
         },
-        (error) => {
+        error: (error) => {
           log.debug(`Login error: ${error}`);
           this.error = error;
-        }
-      );
+        },
+      });
   }
 
   private createForm() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+    this.signInForm = this.formBuilder.group({
+      email: ['', Validators.required],
       password: ['', Validators.required],
-      remember: true,
+      remember: false,
     });
   }
 }
