@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <!-- needs to be right at the top to prevent Chrome from reloading favicon on every route change -->
@@ -51,6 +51,13 @@
         document.write('<script src="cordova.js"><\/script>');
       }
     </script>
-    <app-root></app-root>
+
+    <app-root>
+      <div id="loading">
+        <div id="loading-center">
+          <img src="assets/images/loader.png" alt="loder" />
+        </div>
+      </div>
+    </app-root>
   </body>
 </html>
