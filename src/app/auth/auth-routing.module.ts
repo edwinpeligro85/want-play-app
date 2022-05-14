@@ -4,12 +4,16 @@ import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { AuthComponent } from './auth.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
-    children: [{ path: 'sign-in', component: SignInComponent, data: { title: marker('Login') } }],
+    children: [
+      { path: 'sign-in', component: SignInComponent, data: { title: marker('Login') } },
+      { path: 'sign-up', component: SignUpComponent, data: { title: marker('Login') } },
+    ],
   },
 ];
 

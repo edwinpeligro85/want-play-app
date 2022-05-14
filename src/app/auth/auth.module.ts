@@ -9,9 +9,10 @@ import { AuthRoutingModule } from './auth-routing.module';
 
 import { AuthComponent } from './auth.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, TranslateModule, NgbModule, I18nModule, AuthRoutingModule],
-  declarations: [AuthComponent, SignInComponent],
+  declarations: [AuthComponent, SignInComponent, SignUpComponent],
 })
 export class AuthModule {}

@@ -18,6 +18,7 @@ import { HomeModule } from './home/home.module';
 import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ApiModule } from './api/api.module';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { AppRoutingModule } from './app-routing.module';
     HomeModule,
     AuthModule,
     Angulartics2Module.forRoot(),
+    ApiModule.forRoot({ rootUrl: environment.serverUrl }),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

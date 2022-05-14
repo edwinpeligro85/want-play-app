@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { SignUpDto } from '@app/api/models';
+import { AuthService } from '@app/api/services';
 import { Observable, of } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
@@ -17,7 +19,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private credentialsService: CredentialsService) {}
+  constructor(private credentialsService: CredentialsService, private _auth: AuthService) {}
 
   /**
    * Authenticates the user.
@@ -32,6 +34,10 @@ export class AuthenticationService {
     };
     this.credentialsService.setCredentials(data, context.remember);
     return of(data);
+  }
+
+  register(data: SignUpDto) {
+    return this._auth.authControllerRegister({ body: data });
   }
 
   /**
