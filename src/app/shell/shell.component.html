@@ -1,2 +1,25 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div class="right-column-fixed">
+  <!-- Wrapper Start -->
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <shell-sidebar></shell-sidebar>
+
+    <!-- TOP Nav Bar -->
+    <shell-top-navbar></shell-top-navbar>
+    <!-- TOP Nav Bar END -->
+
+    <!-- Right Sidebar Panel Start-->
+    <shell-right-sidebar></shell-right-sidebar>
+    <!-- Right Sidebar Panel End-->
+
+    <!-- Page Content  -->
+    <div id="content-page" class="content-page">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- Wrapper END -->
+
+  <!-- Footer -->
+  <shell-footer></shell-footer>
+  <!-- Footer END -->
+</div>
