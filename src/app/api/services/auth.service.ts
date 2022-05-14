@@ -151,4 +151,45 @@ export class AuthService extends BaseService {
       map((r: StrictHttpResponse<LoginResponseDto>) => r.body as LoginResponseDto)
     );
   }
+
+  /**
+   * Path part for operation authControllerGetMe
+   */
+  static readonly AuthControllerGetMePath = '/v1/auth/me';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `authControllerGetMe()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  authControllerGetMe$Response(params?: {}): Observable<StrictHttpResponse<User>> {
+    const rb = new RequestBuilder(this.rootUrl, AuthService.AuthControllerGetMePath, 'get');
+    if (params) {
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<User>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `authControllerGetMe$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  authControllerGetMe(params?: {}): Observable<User> {
+    return this.authControllerGetMe$Response(params).pipe(map((r: StrictHttpResponse<User>) => r.body as User));
+  }
 }
