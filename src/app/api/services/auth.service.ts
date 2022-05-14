@@ -25,7 +25,7 @@ export class AuthService extends BaseService {
   /**
    * Path part for operation authControllerRegister
    */
-  static readonly AuthControllerRegisterPath = '/v1/auth/register';
+  static readonly AuthControllerRegisterPath = '/api/v1/auth/register';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -67,7 +67,7 @@ export class AuthService extends BaseService {
   /**
    * Path part for operation authControllerConfirm
    */
-  static readonly AuthControllerConfirmPath = '/v1/auth/confirm';
+  static readonly AuthControllerConfirmPath = '/api/v1/auth/confirm';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -111,7 +111,7 @@ export class AuthService extends BaseService {
   /**
    * Path part for operation authControllerLogin
    */
-  static readonly AuthControllerLoginPath = '/v1/auth/login';
+  static readonly AuthControllerLoginPath = '/api/v1/auth/login';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -155,7 +155,7 @@ export class AuthService extends BaseService {
   /**
    * Path part for operation authControllerGetMe
    */
-  static readonly AuthControllerGetMePath = '/v1/auth/me';
+  static readonly AuthControllerGetMePath = '/api/v1/auth/me';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

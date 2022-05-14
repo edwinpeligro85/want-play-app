@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       { path: 'sign-in', component: SignInComponent, data: { title: marker('Login') } },
       { path: 'sign-up', component: SignUpComponent, data: { title: marker('Login') } },
-      { path: 'comfirm/:type', component: ConfirmMailComponent, data: { title: marker('Login') } },
+      { path: 'confirm/:type', component: ConfirmMailComponent, data: { title: marker('Login') } },
       { path: 'recover-password', component: RecoverPasswordComponent, data: { title: marker('Login') } },
     ],
   },

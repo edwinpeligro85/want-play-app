@@ -1,13 +1,13 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SignUpDto } from '@app/api/models';
+import { LoginResponseDto, SignUpDto } from '@app/api/models';
 import { AuthService } from '@app/api/services';
-import { BehaviorSubject, finalize, Observable, of } from 'rxjs';
+import { BehaviorSubject, finalize, map, Observable, of } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
 
 export interface LoginContext {
-  username: string;
+  email: string;
   password: string;
   remember?: boolean;
 }
@@ -29,21 +29,28 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<Credentials> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456',
-    };
-    this.credentialsService.setCredentials(data, context.remember);
-    return of(data);
+    return this._auth.authControllerLogin({ body: context }).pipe(
+      map((login: LoginResponseDto) => {
+        const data = {
+          username: login.user.email,
+          token: login.accessToken,
+        };
+        this.credentialsService.setCredentials(data, context.remember);
+        return data;
+      })
+    );
   }
 
-  register(data: SignUpDto) {
-    return this._auth.authControllerRegister({ body: data }).pipe(finalize(() => this.onSignUp.next(data)));
+  register(body: SignUpDto) {
+    return this._auth.authControllerRegister({ body }).pipe(finalize(() => this.onSignUp.next(body)));
   }
 
   confirm(token: string) {
-    return this._auth.authControllerConfirm({ token: token });
+    return this._auth.authControllerConfirm({ token });
+  }
+
+  getMe() {
+    return this._auth.authControllerGetMe();
   }
 
   /**

@@ -24,7 +24,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation appControllerGetHello
    */
-  static readonly AppControllerGetHelloPath = '/v1';
+  static readonly AppControllerGetHelloPath = '/api/v1';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -65,7 +65,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerFindAll
    */
-  static readonly UsersControllerFindAllPath = '/v1/users';
+  static readonly UsersControllerFindAllPath = '/api/v1/users';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -108,7 +108,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerCreate
    */
-  static readonly UsersControllerCreatePath = '/v1/users';
+  static readonly UsersControllerCreatePath = '/api/v1/users';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -150,7 +150,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerFindOne
    */
-  static readonly UsersControllerFindOnePath = '/v1/users/{id}';
+  static readonly UsersControllerFindOnePath = '/api/v1/users/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -192,7 +192,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerRemove
    */
-  static readonly UsersControllerRemovePath = '/v1/users/{id}';
+  static readonly UsersControllerRemovePath = '/api/v1/users/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -234,7 +234,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerUpdate
    */
-  static readonly UsersControllerUpdatePath = '/v1/users/{id}';
+  static readonly UsersControllerUpdatePath = '/api/v1/users/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

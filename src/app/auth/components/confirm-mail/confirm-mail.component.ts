@@ -29,6 +29,7 @@ export class ConfirmMailComponent implements OnInit {
       this._auth.confirm(token).subscribe({
         next: (confirm) => {
           if (confirm) {
+            this._auth.getMe().subscribe();
           }
         },
         error: () => {
