@@ -158,7 +158,7 @@ export class ApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  usersControllerFindOne$Response(params: { id: string }): Observable<StrictHttpResponse<User>> {
+  usersControllerFindOne$Response(params: { id: string }): Observable<StrictHttpResponse<{}>> {
     const rb = new RequestBuilder(this.rootUrl, ApiService.UsersControllerFindOnePath, 'get');
     if (params) {
       rb.path('id', params.id, {});
@@ -174,7 +174,7 @@ export class ApiService extends BaseService {
       .pipe(
         filter((r: any) => r instanceof HttpResponse),
         map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<User>;
+          return r as StrictHttpResponse<{}>;
         })
       );
   }
@@ -185,8 +185,8 @@ export class ApiService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  usersControllerFindOne(params: { id: string }): Observable<User> {
-    return this.usersControllerFindOne$Response(params).pipe(map((r: StrictHttpResponse<User>) => r.body as User));
+  usersControllerFindOne(params: { id: string }): Observable<{}> {
+    return this.usersControllerFindOne$Response(params).pipe(map((r: StrictHttpResponse<{}>) => r.body as {}));
   }
 
   /**

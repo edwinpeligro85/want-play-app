@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
       .pipe(finalize(() => (this.loading = false)))
       .subscribe((user) => {
         console.log('🚀 ~ file: sign-up.component.ts ~ line 26 ~ SignUpComponent ~ .subscribe ~ user', user);
-        setTimeout(() => this.router.navigate(['/auth/sign-in']), 300);
+        setTimeout(() => this.router.navigate(['/auth/confirm/sign-up']), 300);
       });
   }
 

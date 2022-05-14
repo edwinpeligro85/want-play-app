@@ -1,7 +1,8 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SignUpDto } from '@app/api/models';
 import { AuthService } from '@app/api/services';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, finalize, Observable, of } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
 
@@ -19,6 +20,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
+  public onSignUp: BehaviorSubject<SignUpDto | null> = new BehaviorSubject<SignUpDto | null>(null);
   constructor(private credentialsService: CredentialsService, private _auth: AuthService) {}
 
   /**
@@ -37,7 +39,11 @@ export class AuthenticationService {
   }
 
   register(data: SignUpDto) {
-    return this._auth.authControllerRegister({ body: data });
+    return this._auth.authControllerRegister({ body: data }).pipe(finalize(() => this.onSignUp.next(data)));
+  }
+
+  confirm(token: string) {
+    return this._auth.authControllerConfirm({ token: token });
   }
 
   /**

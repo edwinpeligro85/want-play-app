@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SignUpDto } from '@app/api/models';
+import { AuthenticationService } from '@app/auth/authentication.service';
 
 @Component({
   selector: 'app-confirm-mail',
@@ -6,7 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./confirm-mail.component.scss'],
 })
 export class ConfirmMailComponent implements OnInit {
-  constructor() {}
+  public type: string;
+  public data: SignUpDto | null = null;
+  public error: Boolean = false;
 
-  ngOnInit(): void {}
+  constructor(private activateRoute: ActivatedRoute, private _auth: AuthenticationService, private router: Router) {
+    this.type = this.activateRoute.snapshot.params['type'];
+    this._auth.onSignUp.subscribe((data: SignUpDto | null) => {
+      this.data = data;
+    });
+  }
+
+  ngOnInit(): void {
+    if (this.type == 'sign-up' && !this.data) this.router.navigate(['/auth/sign-in']);
+
+    if (this.type == 'account') {
+      const url = this.router.parseUrl(this.router.url);
+      const token = url.queryParams['token'];
+      this._auth.confirm(token).subscribe({
+        next: (confirm) => {
+          if (confirm) {
+          }
+        },
+        error: () => {
+          this.error = true;
+        },
+      });
+    }
+  }
 }
