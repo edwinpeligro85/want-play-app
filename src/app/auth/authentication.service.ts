@@ -50,6 +50,7 @@ export class AuthenticationService {
   }
 
   getMe() {
+    //TODO: definir reglas isAuth
     return this._auth.authControllerGetMe();
   }
 

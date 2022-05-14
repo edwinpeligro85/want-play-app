@@ -1,4 +1,4 @@
-<div class="sign-in-from">
+<div class="sign-in-from" *ngIf="!loading">
   <img src="assets/images/login/mail.png" width="80" alt="" />
   <h1 class="mt-3 mb-0" *ngIf="!error">Success !</h1>
   <h1 class="mt-3 mb-0" *ngIf="error">There is a Small Problem!</h1>
@@ -6,7 +6,10 @@
     A email has been send to {{ data?.email }}. Please check for an email from company and click on the included link to
     activate your account.
   </p>
-  <p *ngIf="type == 'account' && !error">your account has been verified.</p>
+  <p *ngIf="type == 'account' && !error">
+    your account has been verified.<br />
+    You will be redirect in a few seconds.
+  </p>
   <p *ngIf="type == 'account' && error">This invitation link isn't valid, Perhaps you already use it?</p>
 
   <div class="d-inline-block w-100">

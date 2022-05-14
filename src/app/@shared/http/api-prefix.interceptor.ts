@@ -14,20 +14,22 @@ const credentialsKey = 'credentials';
 })
 export class ApiPrefixInterceptor implements HttpInterceptor {
   private credentials: Credentials | null = null;
-
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.url.indexOf('assets') > -1) return next.handle(request);
+
     if (!/^(http|https):/i.test(request.url)) {
+      request = request.clone({ url: environment.serverUrl + request.url });
+
       const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+      this.credentials = JSON.parse(savedCredentials ?? '');
       if (savedCredentials) {
-        this.credentials = JSON.parse(savedCredentials);
-        request = request.clone({
-          url: environment.serverUrl + request.url,
-          setHeaders: {
-            Authorization: `Bearer ${this.credentials?.token}`,
-          },
-        });
+        const headers = {
+          Authorization: `Bearer ${this.credentials?.token}`,
+        };
+        request = request.clone({ setHeaders: headers });
       }
     }
+
     return next.handle(request);
   }
 }
