@@ -6466,14 +6466,12 @@
               if (
                 ((this.yaxisLabels = this.graphics.group({ class: 'apexcharts-yaxis' })),
                 t.forEach(function (t, n) {
-                  var o = e.graphics
-                    .group()
-                    .attr({
-                      class: 'apexcharts-series',
-                      seriesName: u.escapeString(i.globals.seriesNames[n]),
-                      rel: n + 1,
-                      'data:realIndex': n,
-                    });
+                  var o = e.graphics.group().attr({
+                    class: 'apexcharts-series',
+                    seriesName: u.escapeString(i.globals.seriesNames[n]),
+                    rel: n + 1,
+                    'data:realIndex': n,
+                  });
                   (e.dataRadiusOfPercent[n] = []),
                     (e.dataRadius[n] = []),
                     (e.angleArr[n] = []),
