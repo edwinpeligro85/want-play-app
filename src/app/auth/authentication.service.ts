@@ -11,6 +11,8 @@ export interface LoginContext {
   remember?: boolean;
 }
 
+export type ThirdPartyAuthenticateProvider = 'facebook';
+
 /**
  * Provides a base for authentication workflow.
  * The login/logout methods should be replaced with proper implementation.
@@ -38,6 +40,18 @@ export class AuthenticationService {
         return data;
       })
     );
+  }
+
+  thirdPartyAuthenticate(provider: ThirdPartyAuthenticateProvider): void {
+    switch (provider) {
+      case 'facebook':
+        this._auth.authControllerFacebookLogin().subscribe();
+        break;
+
+      default:
+        // TODO: Show Alert Message
+        break;
+    }
   }
 
   register(body: SignUpDto) {

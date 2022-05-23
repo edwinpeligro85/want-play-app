@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/auth/authentication.service';
@@ -9,7 +9,7 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
   public loading: boolean;
   public signUpForm!: FormGroup;
 
@@ -22,14 +22,8 @@ export class SignUpComponent implements OnInit {
     this.loading = false;
   }
 
-  ngOnInit(): void {}
-
   onSubmit(): void {
     if (this.signUpForm.invalid) {
-      console.log(
-        '🚀 ~ file: sign-up.component.ts ~ line 26 ~ SignUpComponent ~ onSubmit ~ this.signUpForm',
-        this.signUpForm
-      );
       return;
     }
 
@@ -38,8 +32,7 @@ export class SignUpComponent implements OnInit {
     this._authentication
       .register(this.signUpForm.value)
       .pipe(finalize(() => (this.loading = false)))
-      .subscribe((user) => {
-        console.log('🚀 ~ file: sign-up.component.ts ~ line 26 ~ SignUpComponent ~ .subscribe ~ user', user);
+      .subscribe(() => {
         setTimeout(() => this.router.navigate(['/auth/confirm/sign-up']), 300);
       });
   }

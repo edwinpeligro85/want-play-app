@@ -5,7 +5,7 @@ import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@shared';
-import { AuthenticationService } from '@app/auth/authentication.service';
+import { AuthenticationService, ThirdPartyAuthenticateProvider } from '@app/auth/authentication.service';
 
 const log = new Logger('SignIn');
 
@@ -53,6 +53,10 @@ export class SignInComponent implements OnInit {
           this.error = error;
         },
       });
+  }
+
+  thirdPartyLogin(provider: ThirdPartyAuthenticateProvider) {
+    this.authenticationService.thirdPartyAuthenticate(provider);
   }
 
   private createForm() {
