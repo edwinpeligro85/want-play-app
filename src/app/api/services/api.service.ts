@@ -9,7 +9,9 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { CreatePostDto } from '../models/create-post-dto';
 import { CreateUserDto } from '../models/create-user-dto';
+import { UpdatePostDto } from '../models/update-post-dto';
 import { UpdateUserDto } from '../models/update-user-dto';
 import { User } from '../models/user';
 
@@ -24,7 +26,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation appControllerGetHello
    */
-  static readonly AppControllerGetHelloPath = '/api/v1';
+  static readonly AppControllerGetHelloPath = '/v1';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -65,7 +67,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerFindAll
    */
-  static readonly UsersControllerFindAllPath = '/api/v1/users';
+  static readonly UsersControllerFindAllPath = '/v1/users';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -108,7 +110,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerCreate
    */
-  static readonly UsersControllerCreatePath = '/api/v1/users';
+  static readonly UsersControllerCreatePath = '/v1/users';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -150,7 +152,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerFindOne
    */
-  static readonly UsersControllerFindOnePath = '/api/v1/users/{id}';
+  static readonly UsersControllerFindOnePath = '/v1/users/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -192,7 +194,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerRemove
    */
-  static readonly UsersControllerRemovePath = '/api/v1/users/{id}';
+  static readonly UsersControllerRemovePath = '/v1/users/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -234,7 +236,7 @@ export class ApiService extends BaseService {
   /**
    * Path part for operation usersControllerUpdate
    */
-  static readonly UsersControllerUpdatePath = '/api/v1/users/{id}';
+  static readonly UsersControllerUpdatePath = '/v1/users/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -272,5 +274,215 @@ export class ApiService extends BaseService {
    */
   usersControllerUpdate(params: { id: string; body: UpdateUserDto }): Observable<User> {
     return this.usersControllerUpdate$Response(params).pipe(map((r: StrictHttpResponse<User>) => r.body as User));
+  }
+
+  /**
+   * Path part for operation postsControllerFindAll
+   */
+  static readonly PostsControllerFindAllPath = '/v1/posts';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postsControllerFindAll()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerFindAll$Response(params?: {}): Observable<StrictHttpResponse<string>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.PostsControllerFindAllPath, 'get');
+    if (params) {
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<string>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postsControllerFindAll$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerFindAll(params?: {}): Observable<string> {
+    return this.postsControllerFindAll$Response(params).pipe(map((r: StrictHttpResponse<string>) => r.body as string));
+  }
+
+  /**
+   * Path part for operation postsControllerCreate
+   */
+  static readonly PostsControllerCreatePath = '/v1/posts';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postsControllerCreate()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  postsControllerCreate$Response(params: { body: CreatePostDto }): Observable<StrictHttpResponse<string>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.PostsControllerCreatePath, 'post');
+    if (params) {
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<string>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postsControllerCreate$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  postsControllerCreate(params: { body: CreatePostDto }): Observable<string> {
+    return this.postsControllerCreate$Response(params).pipe(map((r: StrictHttpResponse<string>) => r.body as string));
+  }
+
+  /**
+   * Path part for operation postsControllerFindOne
+   */
+  static readonly PostsControllerFindOnePath = '/v1/posts/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postsControllerFindOne()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerFindOne$Response(params: { id: string }): Observable<StrictHttpResponse<string>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.PostsControllerFindOnePath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<string>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postsControllerFindOne$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerFindOne(params: { id: string }): Observable<string> {
+    return this.postsControllerFindOne$Response(params).pipe(map((r: StrictHttpResponse<string>) => r.body as string));
+  }
+
+  /**
+   * Path part for operation postsControllerRemove
+   */
+  static readonly PostsControllerRemovePath = '/v1/posts/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postsControllerRemove()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerRemove$Response(params: { id: string }): Observable<StrictHttpResponse<string>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.PostsControllerRemovePath, 'delete');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<string>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postsControllerRemove$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerRemove(params: { id: string }): Observable<string> {
+    return this.postsControllerRemove$Response(params).pipe(map((r: StrictHttpResponse<string>) => r.body as string));
+  }
+
+  /**
+   * Path part for operation postsControllerUpdate
+   */
+  static readonly PostsControllerUpdatePath = '/v1/posts/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postsControllerUpdate()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  postsControllerUpdate$Response(params: { id: string; body: UpdatePostDto }): Observable<StrictHttpResponse<string>> {
+    const rb = new RequestBuilder(this.rootUrl, ApiService.PostsControllerUpdatePath, 'patch');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.body(params.body, 'application/json');
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<string>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postsControllerUpdate$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  postsControllerUpdate(params: { id: string; body: UpdatePostDto }): Observable<string> {
+    return this.postsControllerUpdate$Response(params).pipe(map((r: StrictHttpResponse<string>) => r.body as string));
   }
 }

@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginResponseDto, SignUpDto } from '@app/api/models';
 import { AuthService } from '@app/api/services';
@@ -52,6 +51,14 @@ export class AuthenticationService {
   getMe() {
     //TODO: definir reglas isAuth
     return this._auth.authControllerGetMe();
+  }
+
+  forgotPassword(email: string): Observable<boolean> {
+    return this._auth.authControllerForgotPassword({ body: { email } });
+  }
+
+  changePassword(password: string): Observable<boolean> {
+    return this._auth.authControllerChangePassword({ body: { password } });
   }
 
   /**

@@ -12,9 +12,26 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
+import { UiElementsModule } from '@app/ui-elements';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule, NgbModule, I18nModule, AuthRoutingModule],
-  declarations: [AuthComponent, SignInComponent, SignUpComponent, ConfirmMailComponent, RecoverPasswordComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    NgbModule,
+    I18nModule,
+    AuthRoutingModule,
+    UiElementsModule,
+  ],
+  declarations: [
+    AuthComponent,
+    SignInComponent,
+    SignUpComponent,
+    ConfirmMailComponent,
+    RecoverPasswordComponent,
+    ChangePasswordComponent,
+  ],
 })
 export class AuthModule {}

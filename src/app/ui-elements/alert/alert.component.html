@@ -1,0 +1,18 @@
+<div
+  class="alert bg-white"
+  [ngClass]="{
+    'alert-info': color == 'info',
+    'alert-danger': color == 'danger',
+    'alert-primary': color == 'primary',
+    'alert-success': color == 'success',
+    'alert-warning': color == 'warning',
+    'alert-secondary': color == 'secondary'
+  }"
+  role="alert"
+>
+  <!-- <div class="iq-alert-icon">
+    <i class="ri-information-line"></i>
+  </div> -->
+  <div class="iq-alert-text" [innerHTML]="message"></div>
+</div>
+<!-- ri-checkbox-circle-line -->

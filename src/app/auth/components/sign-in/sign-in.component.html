@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <label for="exampleInputPassword1" translate>Password</label>
-      <a href="#" class="float-right" translate>Forgot password?</a>
+      <a [routerLink]="['/auth/recover-password']" class="float-right" translate>Forgot password?</a>
 
       <input
         type="password"
@@ -56,20 +56,21 @@
         <label class="custom-control-label" for="customCheck1" translate>Remember Me</label>
       </div>
       <button type="submit" [disabled]="signInForm.invalid || isLoading" class="btn btn-primary float-right">
-        <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+        <em class="fas fa-cog fa-spin" [hidden]="!isLoading"></em>
         <span translate>Sign in</span>
       </button>
     </div>
+
     <div class="sign-info">
       <span class="dark-color d-inline-block line-height-2"
         >{{ "Don't have an account?" | translate }} <a [routerLink]="['/auth/sign-up']" translate>Sign up</a></span
       >
       <ul class="iq-social-media">
         <li>
-          <a href="#"><i class="ri-facebook-box-line"></i></a>
+          <a href="#"><em class="ri-facebook-box-line"></em></a>
         </li>
         <li>
-          <a href="#"><i class="ri-google-line"></i></a>
+          <a href="#"><em class="ri-google-line"></em></a>
         </li>
       </ul>
     </div>

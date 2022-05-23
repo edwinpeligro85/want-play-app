@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { AuthComponent } from './auth.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ConfirmMailComponent } from './components/confirm-mail/confirm-mail.component';
 import { RecoverPasswordComponent } from './components/recover-password/recover-password.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
@@ -16,7 +17,9 @@ const routes: Routes = [
       { path: 'sign-in', component: SignInComponent, data: { title: marker('Login') } },
       { path: 'sign-up', component: SignUpComponent, data: { title: marker('Login') } },
       { path: 'confirm/:type', component: ConfirmMailComponent, data: { title: marker('Login') } },
+
       { path: 'recover-password', component: RecoverPasswordComponent, data: { title: marker('Login') } },
+      { path: 'change-password', component: ChangePasswordComponent, data: { title: marker('Login') } },
     ],
   },
 ];

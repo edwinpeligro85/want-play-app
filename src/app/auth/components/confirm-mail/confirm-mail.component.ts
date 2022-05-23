@@ -13,8 +13,8 @@ import { finalize } from 'rxjs';
 export class ConfirmMailComponent implements OnInit {
   public type: string;
   public data: SignUpDto | null = null;
-  public error: Boolean = false;
-  public loading: Boolean = true;
+  public error: boolean = false;
+  public loading: boolean = true;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -33,17 +33,17 @@ export class ConfirmMailComponent implements OnInit {
       this.router.navigate(['/auth/sign-in']);
     }
 
+    const url = this.router.parseUrl(this.router.url);
+    const token = url.queryParams['token'];
+
     if (this.type == 'account') {
-      const url = this.router.parseUrl(this.router.url);
-      const token = url.queryParams['token'];
       this._auth
         .confirm(token)
         .pipe(finalize(() => (this.loading = false)))
         .subscribe({
-          next: async () => {
-            const setHeader = await this._credentials.setCredentials({ username: '', token: token });
-            this._auth.getMe().subscribe();
-            setTimeout(() => this.router.navigate(['/home']), 5000);
+          next: () => {
+            this._credentials.setCredentials({ username: '', token: token });
+            this._auth.getMe().subscribe(() => setTimeout(() => this.router.navigate(['/home']), 5000));
           },
           error: () => {
             this.error = true;

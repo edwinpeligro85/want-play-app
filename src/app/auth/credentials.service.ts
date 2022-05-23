@@ -6,7 +6,7 @@ export interface Credentials {
   token: string;
 }
 
-const credentialsKey = 'credentials';
+export const CREDENTIALS_KEY = 'credentials';
 
 /**
  * Provides storage for authentication credentials.
@@ -19,7 +19,7 @@ export class CredentialsService {
   private _credentials: Credentials | null = null;
 
   constructor() {
-    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
+    const savedCredentials = sessionStorage.getItem(CREDENTIALS_KEY) || localStorage.getItem(CREDENTIALS_KEY);
     if (savedCredentials) {
       this._credentials = JSON.parse(savedCredentials);
     }
@@ -53,10 +53,10 @@ export class CredentialsService {
 
     if (credentials) {
       const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(credentialsKey, JSON.stringify(credentials));
+      storage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
     } else {
-      sessionStorage.removeItem(credentialsKey);
-      localStorage.removeItem(credentialsKey);
+      sessionStorage.removeItem(CREDENTIALS_KEY);
+      localStorage.removeItem(CREDENTIALS_KEY);
     }
   }
 }
