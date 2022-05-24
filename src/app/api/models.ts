@@ -7,5 +7,6 @@ export { ForgotPasswordDto } from './models/forgot-password-dto';
 export { ChangePasswordDto } from './models/change-password-dto';
 export { CreateUserDto } from './models/create-user-dto';
 export { UpdateUserDto } from './models/update-user-dto';
+export { UpdateProfileDto } from './models/update-profile-dto';
 export { CreatePostDto } from './models/create-post-dto';
 export { UpdatePostDto } from './models/update-post-dto';
