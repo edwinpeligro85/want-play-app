@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
-  "input": "http://localhost:3500/docs-json",
+  "input": "https://want-play-api.herokuapp.com/docs-json",
   "output": "src/app/api",
   "ignoreUnusedModels": false
 }

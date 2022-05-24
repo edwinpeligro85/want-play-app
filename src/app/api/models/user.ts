@@ -1,12 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
+import { Profile } from './profile';
 export interface User {
   _id: string;
-  age?: number;
+  createdAt: string;
   email: string;
   facebookId?: string;
   firstName: string;
-  gender?: 'male' | 'female';
   lastName?: string;
+  profile: Profile;
   status: 'active' | 'pending' | 'blocked';
+  updatedAt: string;
 }

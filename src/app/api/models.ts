@@ -1,4 +1,5 @@
 export { SignUpDto } from './models/sign-up-dto';
+export { Profile } from './models/profile';
 export { User } from './models/user';
 export { LoginDto } from './models/login-dto';
 export { LoginResponseDto } from './models/login-response-dto';
