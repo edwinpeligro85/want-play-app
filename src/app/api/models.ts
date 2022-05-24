@@ -1,4 +1,5 @@
 export { SignUpDto } from './models/sign-up-dto';
+export { Profile } from './models/profile';
 export { User } from './models/user';
 export { LoginDto } from './models/login-dto';
 export { LoginResponseDto } from './models/login-response-dto';
@@ -6,5 +7,6 @@ export { ForgotPasswordDto } from './models/forgot-password-dto';
 export { ChangePasswordDto } from './models/change-password-dto';
 export { CreateUserDto } from './models/create-user-dto';
 export { UpdateUserDto } from './models/update-user-dto';
+export { UpdateProfileDto } from './models/update-profile-dto';
 export { CreatePostDto } from './models/create-post-dto';
 export { UpdatePostDto } from './models/update-post-dto';
