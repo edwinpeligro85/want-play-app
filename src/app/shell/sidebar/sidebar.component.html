@@ -2,12 +2,16 @@
   <div id="sidebar-scrollbar">
     <nav class="iq-sidebar-menu">
       <ul id="iq-sidebar-toggle" class="iq-menu">
-        <li class="active">
-          <a href="index.html" class="iq-waves-effect"><i class="las la-newspaper"></i><span>Newsfeed</span></a>
+        <li [routerLink]="['/home']" routerLinkActive="active">
+          <a [routerLink]="['/home']" routerLinkActive="active" class="iq-waves-effect"
+            ><i class="las la-newspaper"></i><span>Newsfeed</span></a
+          >
         </li>
 
-        <li>
-          <a href="profile.html" class="iq-waves-effect"><i class="las la-user"></i><span>Profile</span></a>
+        <li [routerLink]="['/user/profile/timeline']" routerLinkActive="active">
+          <a [routerLink]="['/user/profile/timeline']" routerLinkActive="active" class="iq-waves-effect"
+            ><i class="las la-user"></i><span>Profile</span></a
+          >
         </li>
 
         <!-- <li>
@@ -31,9 +35,9 @@
           >
         </li> -->
 
-        <li>
+        <!-- <li>
           <a href="chat.html" class="iq-waves-effect"><i class="lab la-rocketchat"></i><span>Chat</span></a>
-        </li>
+        </li> -->
 
         <!-- <li>
           <a href="birthday.html" class="iq-waves-effect"><i class="las la-birthday-cake"></i><span>Birthday</span></a>

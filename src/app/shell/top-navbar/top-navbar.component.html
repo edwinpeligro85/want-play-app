@@ -2,7 +2,7 @@
   <div class="iq-navbar-custom">
     <nav class="navbar navbar-expand-lg navbar-light p-0">
       <div class="iq-navbar-logo d-flex justify-content-between">
-        <a href="index.html">
+        <a [routerLink]="['/home']" routerLinkActive="active">
           <img src="assets/images/logo.png" class="img-fluid" alt="" />
           <span>Quiero Jugar</span>
         </a>
@@ -52,7 +52,7 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="search-toggle iq-waves-effect" href="#"><i class="ri-group-line"></i></a>
             <div class="iq-sub-dropdown iq-sub-dropdown-large">
               <div class="iq-card shadow-none m-0">
@@ -136,9 +136,9 @@
                 </div>
               </div>
             </div>
-          </li>
+          </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="search-toggle iq-waves-effect">
               <div id="lottie-beil">
                 <i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -204,9 +204,9 @@
                 </div>
               </div>
             </div>
-          </li>
+          </li> -->
 
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a href="#" class="search-toggle iq-waves-effect">
               <div id="lottie-mail">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -279,7 +279,7 @@
                 </div>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>
 
         <ul class="navbar-list">
@@ -323,7 +323,8 @@
                       </div>
                     </div>
                   </a>
-                  <a href="privacy-setting.html" class="iq-sub-card iq-bg-danger-hover">
+
+                  <!-- <a href="privacy-setting.html" class="iq-sub-card iq-bg-danger-hover">
                     <div class="media align-items-center">
                       <div class="rounded iq-card-icon iq-bg-danger">
                         <i class="ri-lock-line"></i>
@@ -333,7 +334,8 @@
                         <p class="mb-0 font-size-12">Control your privacy parameters.</p>
                       </div>
                     </div>
-                  </a>
+                  </a> -->
+
                   <div class="d-inline-block w-100 text-center p-3">
                     <a class="bg-primary text-white iq-sign-btn pointer" (click)="logout()" role="button"
                       >Sign out<em class="ri-login-box-line ml-2"></em
