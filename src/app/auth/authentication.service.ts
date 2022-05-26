@@ -32,9 +32,11 @@ export class AuthenticationService {
   login(context: LoginContext): Observable<Credentials> {
     return this._auth.authControllerLogin({ body: context }).pipe(
       map((login: LoginResponseDto) => {
-        const data = {
-          username: login.user.email,
+        const data: Credentials = {
+          firstName: login.user.firstName,
+          lastName: login.user.lastName,
           token: login.accessToken,
+          pic: `https://ui-avatars.com/api/?name=${login.user.firstName}%20${login.user.lastName}&color=00a74a&background=f5fbff`,
         };
         this.credentialsService.setCredentials(data, context.remember);
         return data;

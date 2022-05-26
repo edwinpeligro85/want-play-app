@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '@app/auth';
+import { AuthenticationService, CredentialsService } from '@app/auth';
 
 @Component({
   selector: 'shell-top-navbar',
@@ -8,7 +8,16 @@ import { AuthenticationService } from '@app/auth';
   styleUrls: ['./top-navbar.component.scss'],
 })
 export class TopNavbarComponent {
-  constructor(private router: Router, private _auth: AuthenticationService) {}
+  get fullName(): string | null {
+    const credentials = this._credentials.credentials;
+    return credentials ? `${credentials.firstName} ${credentials.lastName}` : null;
+  }
+
+  get pic(): string | null {
+    return this._credentials.pic;
+  }
+
+  constructor(private router: Router, private _auth: AuthenticationService, private _credentials: CredentialsService) {}
 
   logout() {
     this._auth.logout().subscribe(() => this.router.navigate(['/auth/sign-in'], { replaceUrl: true }));

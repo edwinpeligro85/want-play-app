@@ -32,9 +32,25 @@ export class PostService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  postsControllerFindAll$Response(params?: {}): Observable<StrictHttpResponse<void>> {
+  postsControllerFindAll$Response(params?: {
+    /**
+     * Filter query string, see documentation for its schema
+     */
+    filter?: string;
+
+    /**
+     * Use only allowed properties separated by semicolon; default is ascending created_at; prefix name with hyphen/minus sign to get descending order
+     */
+    sort?: string;
+    page?: number;
+    limit?: number;
+  }): Observable<StrictHttpResponse<void>> {
     const rb = new RequestBuilder(this.rootUrl, PostService.PostsControllerFindAllPath, 'get');
     if (params) {
+      rb.query('filter', params.filter, {});
+      rb.query('sort', params.sort, {});
+      rb.query('page', params.page, {});
+      rb.query('limit', params.limit, {});
     }
 
     return this.http
@@ -58,7 +74,19 @@ export class PostService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  postsControllerFindAll(params?: {}): Observable<void> {
+  postsControllerFindAll(params?: {
+    /**
+     * Filter query string, see documentation for its schema
+     */
+    filter?: string;
+
+    /**
+     * Use only allowed properties separated by semicolon; default is ascending created_at; prefix name with hyphen/minus sign to get descending order
+     */
+    sort?: string;
+    page?: number;
+    limit?: number;
+  }): Observable<void> {
     return this.postsControllerFindAll$Response(params).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
   }
 
