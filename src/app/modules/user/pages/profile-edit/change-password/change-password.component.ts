@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService, CredentialsService } from '@app/auth';
 import { CustomValidators } from '@app/common/validators';
 import { Color } from '@app/ui-elements/types';
-import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',
