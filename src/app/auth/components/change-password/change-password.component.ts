@@ -41,7 +41,7 @@ export class ChangePasswordComponent {
     if (this.form.invalid) return;
 
     this.loading = true;
-    this._credentials.setCredentials({ username: '', token: this.token ?? '' });
+    this._credentials.setCredentials({ firstName: '', token: this.token ?? '' });
 
     this._auth
       .changePassword(this.form.value.password)

@@ -42,7 +42,7 @@ export class ConfirmMailComponent implements OnInit {
         .pipe(finalize(() => (this.loading = false)))
         .subscribe({
           next: () => {
-            this._credentials.setCredentials({ username: '', token: token });
+            this._credentials.setCredentials({ firstName: '', token: token });
             this._auth.getMe().subscribe(() => setTimeout(() => this.router.navigate(['/home']), 5000));
           },
           error: () => {

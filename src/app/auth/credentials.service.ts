@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 
 export interface Credentials {
   // Customize received credentials here
-  username: string;
+  pic?: string;
+  nickname?: string;
+  lastName?: string;
+  firstName: string;
   token: string;
 }
 
@@ -39,6 +42,10 @@ export class CredentialsService {
    */
   get credentials(): Credentials | null {
     return this._credentials;
+  }
+
+  get pic(): string {
+    return this.credentials?.pic ?? 'assets/images/logo.png';
   }
 
   /**
