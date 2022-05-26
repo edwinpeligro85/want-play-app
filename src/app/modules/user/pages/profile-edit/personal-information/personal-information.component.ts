@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { City } from '@app/api/models';
 import { AuthenticationService } from '@app/auth';
 import { ProfileEditService } from '@app/modules/user/service/profile-edit.service';
 
@@ -12,12 +13,16 @@ export class PersonalInformationComponent implements OnInit {
   public userForm: FormGroup;
   public profileForm: FormGroup;
   public user: any;
+  public age: number = 0;
+  public city: City[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private _profile: ProfileEditService,
     private _auth: AuthenticationService
   ) {
+    this._profile.getCity().subscribe((city) => (this.city = city));
+
     this._auth.getMe().subscribe((user) => {
       this.user = user;
       this.loadData();
@@ -55,6 +60,7 @@ export class PersonalInformationComponent implements OnInit {
     profileForm.get('country')?.setValue(this.user.profile.country);
     profileForm.get('gender')?.setValue(this.user.profile.gender);
     profileForm.get('city')?.setValue(this.user.profile.city);
+    this.age = this.user.profile.age;
   }
 
   onSubmit() {
@@ -72,5 +78,39 @@ export class PersonalInformationComponent implements OnInit {
     });
   }
 
-  onUpdateProfile() {}
+  onBirthdateChange(event: any) {
+    this.age = Number(this.CalculateAge(event.target.value));
+    console.log(event.target.value, this.age);
+  }
+
+  onUpdateProfile() {
+    if (this.userForm.invalid) return;
+    const form = this.profileForm.value;
+
+    const body = {
+      birthDate: form.birthDate,
+      nickname: form.nickname,
+      aboutMe: form.aboutMe,
+      gender: form.gender,
+      city: form.city,
+    };
+
+    this._profile.updateProfile(this.user.profile._id, body).subscribe({
+      error: () => {},
+      complete: () => {},
+    });
+
+    console.log(this.profileForm.value);
+  }
+
+  CalculateAge(date: Date): number {
+    const today: Date = new Date();
+    const birthDate: Date = new Date(date);
+    let age: number = today.getFullYear() - birthDate.getFullYear();
+    const month: number = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 }

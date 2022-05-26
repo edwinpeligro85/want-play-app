@@ -6,5 +6,5 @@ export interface UpdateProfileDto {
   birthDate: string;
   gender: 'male' | 'female';
   nickname: string;
-  socialMedias: Array<SocialMedia>;
+  socialMedias?: Array<SocialMedia>;
 }
