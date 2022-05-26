@@ -29,7 +29,13 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    if (this.passwordForm.invalid) return;
+    if (this.passwordForm.invalid) {
+      this.alert = {
+        color: 'danger',
+        message: 'Invalid Form',
+      };
+      return;
+    }
 
     this._auth.getMe().subscribe({
       next: (me) => {
@@ -68,7 +74,7 @@ export class ChangePasswordComponent implements OnInit {
             let message = e.message;
 
             if (e.status === 401) {
-              message = 'Token is invalid or expired';
+              message = 'Invalid Current Password';
             }
 
             this.alert = {

@@ -7,9 +7,10 @@ import { PersonalInformationComponent } from './personal-information/personal-in
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SocialMediaComponent } from './social-media/social-media.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UiElementsModule } from '@app/ui-elements';
 
 @NgModule({
   declarations: [ProfileEditComponent, PersonalInformationComponent, ChangePasswordComponent, SocialMediaComponent],
-  imports: [CommonModule, ProfileEditRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, ProfileEditRoutingModule, ReactiveFormsModule, UiElementsModule],
 })
 export class ProfileEditModule {}

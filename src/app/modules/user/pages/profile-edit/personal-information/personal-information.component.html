@@ -4,7 +4,7 @@
       <h4 class="card-title">Profile Information</h4>
     </div>
   </div>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="userForm">
     <div class="iq-card-body">
       <form>
         <div class="row align-items-center">
@@ -21,7 +21,7 @@
             <input type="text" class="form-control" id="email" formControlName="email" readonly />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button type="button" (click)="onSubmit()" class="btn btn-primary mr-2">Submit</button>
         <button type="reset" class="btn iq-bg-danger">Cancel</button>
       </form>
     </div>
@@ -53,16 +53,16 @@
         </div>
         <div class="form-group col-sm-6">
           <label for="dob">Date Of Birth:</label>
-          <input class="form-control" id="dob" value="1984-01-24" />
+          <input class="form-control" id="dob" formControlName="birthDate" />
         </div>
         <div class="form-group col-sm-6">
           <label class="d-block">Gender:</label>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" formControlName="Gender" class="custom-control-input" checked="" value="male" />
+            <input type="radio" formControlName="gender" class="custom-control-input" checked="" value="male" />
             <label class="custom-control-label" for="customRadio6"> Male </label>
           </div>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" formControlName="Gender" class="custom-control-input" value="female" />
+            <input type="radio" formControlName="gender" class="custom-control-input" value="female" />
             <label class="custom-control-label" for="customRadio7"> Female </label>
           </div>
         </div>
@@ -70,33 +70,23 @@
           <label>Age:</label>
           <input readonly type="number" class="form-control" id="exampleFormControlSelect2" />
         </div>
-        <!-- <div class="form-group col-sm-6">
-          <label>Country:</label>
-          <select class="form-control" id="exampleFormControlSelect3">
-            <option>Caneda</option>
-            <option>Noida</option>
-            <option selected="">USA</option>
-            <option>India</option>
-            <option>Africa</option>
-          </select>
-        </div>
         <div class="form-group col-sm-6">
           <label>State:</label>
-          <select class="form-control" id="exampleFormControlSelect4">
-            <option>California</option>
-            <option>Florida</option>
-            <option selected="">Georgia</option>
-            <option>Connecticut</option>
-            <option>Louisiana</option>
+          <input class="form-control" type="text" formControlName="country" readonly />
+        </div>
+        <div class="form-group col-sm-6">
+          <label>City:</label>
+          <select class="form-control" formControlName="city" id="exampleFormControlSelect4">
+            <option>Risaralda</option>
           </select>
-        </div> -->
+        </div>
         <div class="form-group col-sm-12">
           <label>About Me:</label>
-          <textarea class="form-control" name="address" formControlName="aboutMe" rows="5" style="line-height: 22px">
+          <textarea class="form-control" name="aboutMe" formControlName="aboutMe" rows="5" style="line-height: 22px">
           </textarea>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+      <button type="button" (click)="onUpdateProfile()" class="btn btn-primary mr-2">Submit</button>
       <button type="reset" class="btn iq-bg-danger">Cancel</button>
     </div>
   </form>
