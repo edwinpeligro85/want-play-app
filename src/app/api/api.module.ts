@@ -6,7 +6,10 @@ import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 import { ProfileService } from './services/profile.service';
+import { PostService } from './services/post.service';
+import { LocationService } from './services/location.service';
 
 /**
  * Module that provides all services and configuration.
@@ -15,7 +18,7 @@ import { ProfileService } from './services/profile.service';
   imports: [],
   exports: [],
   declarations: [],
-  providers: [ApiService, AuthService, ProfileService, ApiConfiguration],
+  providers: [ApiService, AuthService, UserService, ProfileService, PostService, LocationService, ApiConfiguration],
 })
 export class ApiModule {
   static forRoot(params: ApiConfigurationParams): ModuleWithProviders<ApiModule> {
