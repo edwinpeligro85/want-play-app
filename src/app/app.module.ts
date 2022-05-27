@@ -25,6 +25,7 @@ import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ApiModule } from './api/api.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import { ApiModule } from './api/api.module';
     AuthModule,
     Angulartics2Module.forRoot(),
     ApiModule.forRoot({ rootUrl: environment.serverUrl }),
+    SweetAlert2Module.forRoot(),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
