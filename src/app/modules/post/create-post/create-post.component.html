@@ -4,25 +4,43 @@
       <h4 class="card-title">Create Post</h4>
     </div>
   </div>
-  <form class="iq-card-body">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="iq-card-body">
     <div class="d-flex align-items-center">
       <div class="user-img">
         <img src="assets/images/user/1.jpg" alt="userimg" class="avatar-60 rounded-circle" />
       </div>
       <div class="post-text ml-3 w-100">
-        <input type="text" class="form-control rounded" placeholder="Write something here..." style="border: none" />
+        <textarea
+          formControlName="body"
+          class="form-control rounded"
+          placeholder="Want play here..."
+          rows="2"
+          style="border: none"
+        ></textarea>
       </div>
     </div>
     <hr />
+
+    <p>you want to do?</p>
+
     <ul class="post-opt-block d-flex align-items-center list-inline m-0 p-0">
-      <li class="iq-bg-primary rounded p-2 pointer mr-3">
-        <a href="#"></a><img src="assets/images/small/08.png" alt="icon" class="img-fluid" /> Necesito jugador's
+      <li
+        [ngClass]="{ active: typeControl.value == 'want' }"
+        (click)="setType('want')"
+        class="iq-bg-primary rounded p-2 pointer mr-3"
+      >
+        <img src="assets/images/small/14.png" alt="icon" class="img-fluid" /> Quiero jugador
       </li>
-      <li class="iq-bg-primary rounded p-2 pointer mr-3">
-        <a href="#"></a><img src="assets/images/small/14.png" alt="icon" class="img-fluid" /> Quiero jugador
+
+      <li
+        [ngClass]="{ active: typeControl.value == 'need' }"
+        (click)="setType('need')"
+        class="iq-bg-primary rounded p-2 pointer mr-3"
+      >
+        <img src="assets/images/small/08.png" alt="icon" class="img-fluid" /> Necesito jugador's
       </li>
     </ul>
 
-    <button type="submit" class="btn btn-primary d-block w-100 mt-3">To play</button>
+    <button type="submit" [disabled]="form.invalid" class="btn btn-outline-primary d-block w-100 mt-3">To play</button>
   </form>
 </div>

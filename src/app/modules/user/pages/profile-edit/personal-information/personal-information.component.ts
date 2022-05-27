@@ -85,22 +85,11 @@ export class PersonalInformationComponent implements OnInit {
 
   onUpdateProfile() {
     if (this.userForm.invalid) return;
-    const form = this.profileForm.value;
 
-    const body = {
-      birthDate: form.birthDate,
-      nickname: form.nickname,
-      aboutMe: form.aboutMe,
-      gender: form.gender,
-      city: form.city,
-    };
-
-    this._profile.updateProfile(this.user.profile._id, body).subscribe({
+    this._profile.updateProfile(this.user.profile._id, this.profileForm.value).subscribe({
       error: () => {},
       complete: () => {},
     });
-
-    console.log(this.profileForm.value);
   }
 
   CalculateAge(date: Date): number {

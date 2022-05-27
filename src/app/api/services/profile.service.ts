@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 import { Profile } from '../models/profile';
+import { ProfileResponseDto } from '../models/profile-response-dto';
 import { UpdateProfileDto } from '../models/update-profile-dto';
 
 @Injectable({
@@ -31,7 +32,7 @@ export class ProfileService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  profileControllerFindOne$Response(params: { id: string }): Observable<StrictHttpResponse<Profile>> {
+  profileControllerFindOne$Response(params: { id: string }): Observable<StrictHttpResponse<ProfileResponseDto>> {
     const rb = new RequestBuilder(this.rootUrl, ProfileService.ProfileControllerFindOnePath, 'get');
     if (params) {
       rb.path('id', params.id, {});
@@ -47,7 +48,7 @@ export class ProfileService extends BaseService {
       .pipe(
         filter((r: any) => r instanceof HttpResponse),
         map((r: HttpResponse<any>) => {
-          return r as StrictHttpResponse<Profile>;
+          return r as StrictHttpResponse<ProfileResponseDto>;
         })
       );
   }
@@ -58,9 +59,9 @@ export class ProfileService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  profileControllerFindOne(params: { id: string }): Observable<Profile> {
+  profileControllerFindOne(params: { id: string }): Observable<ProfileResponseDto> {
     return this.profileControllerFindOne$Response(params).pipe(
-      map((r: StrictHttpResponse<Profile>) => r.body as Profile)
+      map((r: StrictHttpResponse<ProfileResponseDto>) => r.body as ProfileResponseDto)
     );
   }
 
