@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoginResponseDto, SignUpDto } from '@app/api/models';
 import { AuthService } from '@app/api/services';
+import { environment } from '@env/environment';
 import { BehaviorSubject, finalize, map, Observable, of } from 'rxjs';
 
 import { Credentials, CredentialsService } from './credentials.service';
@@ -47,7 +48,7 @@ export class AuthenticationService {
   thirdPartyAuthenticate(provider: ThirdPartyAuthenticateProvider): void {
     switch (provider) {
       case 'facebook':
-        this._auth.authControllerFacebookLogin().subscribe();
+        location.href = `${environment.serverUrl}${AuthService.AuthControllerFacebookLoginPath}`;
         break;
 
       default:

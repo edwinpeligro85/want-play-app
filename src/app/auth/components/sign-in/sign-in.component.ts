@@ -6,6 +6,8 @@ import { finalize } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { AuthenticationService, ThirdPartyAuthenticateProvider } from '@app/auth/authentication.service';
+import { Store } from '@ngxs/store';
+import { Auth } from '@app/auth/state';
 
 const log = new Logger('SignIn');
 
@@ -22,10 +24,11 @@ export class SignInComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
+    private router: Router,
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private _store: Store
   ) {
     this.createForm();
   }
@@ -34,8 +37,10 @@ export class SignInComponent implements OnInit {
 
   login() {
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.signInForm.value);
-    login$
+    const { email, password } = this.signInForm.value;
+
+    this._store
+      .dispatch(new Auth.Signin(email, password))
       .pipe(
         finalize(() => {
           this.signInForm.markAsPristine();
@@ -44,8 +49,8 @@ export class SignInComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe({
-        next: (credentials) => {
-          log.debug(`${credentials.firstName} successfully logged in`);
+        next: (state) => {
+          log.debug(`${state.auth.user.firstName} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams['redirect'] || '/'], { replaceUrl: true });
         },
         error: (error) => {

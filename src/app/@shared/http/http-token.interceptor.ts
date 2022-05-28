@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CredentialsService } from '@app/auth/credentials.service';
+import { Store } from '@ngxs/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpTokenInterceptor implements HttpInterceptor {
-  constructor(private _credentials: CredentialsService) {}
+  constructor(private store: Store) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this._credentials.credentials) {
-      request = request.clone({
-        setHeaders: {
-          authorization: `Bearer ${this._credentials.credentials.token}`,
-        },
-      });
-    }
+    const token = this.store.selectSnapshot<string>((state) => state.auth.token);
+
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return next.handle(request);
   }

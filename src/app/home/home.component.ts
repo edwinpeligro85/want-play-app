@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthState } from '@app/auth/state';
 import { PostModel } from '@app/modules/post/post.model';
 import { Posts, PostsState } from '@app/modules/post/state';
+import { UserModel } from '@app/modules/user/user.model';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
@@ -10,8 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  @Select(PostsState.posts)
-  public posts$!: Observable<PostModel[]>;
+  @Select(AuthState.user) user$!: Observable<UserModel>;
+  @Select(PostsState.posts) posts$!: Observable<PostModel[]>;
 
   public isLoading = false;
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService, CredentialsService } from '@app/auth';
+import { Auth, AuthState } from '@app/auth/state';
+import { UserModel } from '@app/modules/user/user.model';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'shell-top-navbar',
@@ -8,18 +10,11 @@ import { AuthenticationService, CredentialsService } from '@app/auth';
   styleUrls: ['./top-navbar.component.scss'],
 })
 export class TopNavbarComponent {
-  get fullName(): string | null {
-    const credentials = this._credentials.credentials;
-    return credentials ? `${credentials.firstName} ${credentials.lastName}` : null;
-  }
+  @Select(AuthState.user) user$!: Observable<UserModel>;
 
-  get pic(): string | null {
-    return this._credentials.pic;
-  }
-
-  constructor(private router: Router, private _auth: AuthenticationService, private _credentials: CredentialsService) {}
+  constructor(private store: Store) {}
 
   logout() {
-    this._auth.logout().subscribe(() => this.router.navigate(['/auth/sign-in'], { replaceUrl: true }));
+    this.store.dispatch(new Auth.Signout());
   }
 }

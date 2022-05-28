@@ -1,5 +1,8 @@
 export { SignUpDto } from './models/sign-up-dto';
 export { User } from './models/user';
+export { Country } from './models/country';
+export { State } from './models/state';
+export { City } from './models/city';
 export { Profile } from './models/profile';
 export { LoginDto } from './models/login-dto';
 export { LoginResponseDto } from './models/login-response-dto';
@@ -11,9 +14,6 @@ export { ProfileResponseDto } from './models/profile-response-dto';
 export { SocialMedia } from './models/social-media';
 export { UpdateProfileDto } from './models/update-profile-dto';
 export { CreatePostDto } from './models/create-post-dto';
-export { Country } from './models/country';
-export { State } from './models/state';
-export { City } from './models/city';
 export { Post } from './models/post';
 export { PostRequest } from './models/post-request';
 export { UpdatePostDto } from './models/update-post-dto';

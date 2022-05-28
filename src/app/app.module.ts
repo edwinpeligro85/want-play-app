@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -27,6 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { ApiModule } from './api/api.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { STORE_CONFIG } from './app.store.config';
+import { appInitializer } from './app.initializer';
+import { Store } from '@ngxs/store';
 
 @NgModule({
   imports: [
@@ -49,6 +51,12 @@ import { STORE_CONFIG } from './app.store.config';
   ],
   declarations: [AppComponent],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializer,
+      multi: true,
+      deps: [Store],
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiPrefixInterceptor,

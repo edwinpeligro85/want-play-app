@@ -6,7 +6,6 @@ import { Shell } from './shell.service';
   selector: 'app-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss'],
-  //providers: [Shell]
 })
 export class ShellComponent implements OnInit {
   public user: User | undefined;
@@ -14,7 +13,7 @@ export class ShellComponent implements OnInit {
   constructor(private _shell: Shell) {}
 
   ngOnInit() {
-    this.loadUser();
+    // this.loadUser();
   }
 
   loadUser() {

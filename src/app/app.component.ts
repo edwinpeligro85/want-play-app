@@ -11,6 +11,8 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
 import { environment } from '@env/environment';
 import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { I18nService } from '@app/i18n';
+import { Actions, ofActionDispatched } from '@ngxs/store';
+import { Auth } from './auth/state';
 
 const log = new Logger('App');
 
@@ -30,7 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private keyboard: Keyboard,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private actions: Actions
   ) {}
 
   async ngOnInit() {
@@ -38,6 +41,10 @@ export class AppComponent implements OnInit, OnDestroy {
     if (environment.production) {
       Logger.enableProductionMode();
     }
+
+    this.actions.pipe(ofActionDispatched(Auth.Signout)).subscribe(() => {
+      this.router.navigate(['/auth/login']);
+    });
 
     log.debug('init');
 

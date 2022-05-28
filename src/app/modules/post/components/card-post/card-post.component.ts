@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ProfileModel } from '@app/modules/user/profile.model';
 import { Store } from '@ngxs/store';
 import { PostModel } from '../../post.model';
 import { Posts } from '../../state';
@@ -10,6 +11,7 @@ import { Posts } from '../../state';
 })
 export class CardPostComponent implements OnInit {
   @Input() public post!: PostModel;
+  @Input() public isOwn!: boolean;
 
   constructor(private store: Store) {}
 
