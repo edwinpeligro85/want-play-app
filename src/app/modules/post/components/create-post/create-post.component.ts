@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { Posts } from '../../state';
 
 @Component({
   selector: 'create-post',
@@ -13,7 +15,7 @@ export class CreatePostComponent implements OnInit {
     return this.form.controls['type'];
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -23,6 +25,10 @@ export class CreatePostComponent implements OnInit {
     if (this.form.invalid) return;
 
     console.log(this.form.value);
+
+    this.store
+      .dispatch(new Posts.Add({ _id: new Date().getTime(), ...this.form.value }))
+      .subscribe(() => this.form.setValue({ type: 'want', body: '' }));
   }
 
   setType(type: string): void {

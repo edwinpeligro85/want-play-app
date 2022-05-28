@@ -6,9 +6,16 @@
         <create-post></create-post>
       </div>
 
-      <div class="col-sm-12">
-        <!-- TODO: List of posts -->
-      </div>
+      <ng-container *ngFor="let post of posts$ | async">
+        <div class="col-sm-12">
+          <!-- TODO: List of posts -->
+          <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+            <div class="iq-card-body">
+              <card-post [post]="post"></card-post>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
 
     <div class="col-lg-4">
@@ -43,7 +50,7 @@
             <li class="d-flex mb-4 align-items-center">
               <img src="assets/images/page-img/s4.jpg" alt="story-img" class="rounded-circle img-fluid" />
               <div class="stories-data ml-3">
-                <h5>Web Workshop</h5>
+                <h5>Has an match in</h5>
                 <p class="mb-0">1 hour ago</p>
               </div>
             </li>
@@ -54,7 +61,7 @@
       <div class="iq-card">
         <div class="iq-card-header d-flex justify-content-between">
           <div class="iq-header-title">
-            <h4 class="card-title">Suggested Pages</h4>
+            <h4 class="card-title">Suggested Courts</h4>
           </div>
           <div class="iq-card-header-toolbar d-flex align-items-center">
             <div class="dropdown">
@@ -81,13 +88,21 @@
           <ul class="suggested-page-story m-0 p-0 list-inline">
             <li class="mb-3">
               <div class="d-flex align-items-center mb-3">
-                <img src="assets/images/page-img/42.png" alt="story-img" class="rounded-circle img-fluid avatar-50" />
+                <img
+                  src="https://scontent.feoh3-1.fna.fbcdn.net/v/t1.6435-9/78631745_742271169627213_7429559863140679680_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=xlETuHXW8S0AX9yEXUl&_nc_ht=scontent.feoh3-1.fna&oh=00_AT-B3DKq32dbTehqgN2UWqaD-C6cjlwZqvVBfpjgRKGkcw&oe=62B594A8"
+                  alt="story-img"
+                  class="rounded-circle img-fluid avatar-50"
+                />
                 <div class="stories-data ml-3">
-                  <h5>Iqonic Studio</h5>
-                  <p class="mb-0">Lorem Ipsum</p>
+                  <h5>Canaán - Canchas Sintéticas</h5>
+                  <p class="mb-0">Via Armenia, Pereira, Risaralda</p>
                 </div>
               </div>
-              <img src="assets/images/small/img-1.jpg" class="img-fluid rounded" alt="Responsive image" />
+              <img
+                src="https://scontent.feoh3-1.fna.fbcdn.net/v/t1.6435-9/34605338_375646796289654_209685435876638720_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=vybSFJO4uDcAX97wCSf&_nc_ht=scontent.feoh3-1.fna&oh=00_AT80e2XvGqZNqd6aZa-nEoewyhG4uvmf3G7D7IZ6vqbSNA&oe=62B88C4E"
+                class="img-fluid rounded"
+                alt="Responsive image"
+              />
             </li>
           </ul>
         </div>

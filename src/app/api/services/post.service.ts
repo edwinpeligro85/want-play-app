@@ -44,7 +44,18 @@ export class PostService extends BaseService {
     sort?: string;
     page?: number;
     limit?: number;
-  }): Observable<StrictHttpResponse<void>> {
+  }): Observable<
+    StrictHttpResponse<{
+      data?: Array<Post>;
+      pagination?: {
+        total?: number;
+        page?: number;
+        limit?: number;
+        next?: number | null;
+        prev?: number | null;
+      };
+    }>
+  > {
     const rb = new RequestBuilder(this.rootUrl, PostService.PostsControllerFindAllPath, 'get');
     if (params) {
       rb.query('filter', params.filter, {});
@@ -56,14 +67,23 @@ export class PostService extends BaseService {
     return this.http
       .request(
         rb.build({
-          responseType: 'text',
-          accept: '*/*',
+          responseType: 'json',
+          accept: 'application/json',
         })
       )
       .pipe(
         filter((r: any) => r instanceof HttpResponse),
         map((r: HttpResponse<any>) => {
-          return (r as HttpResponse<any>).clone({ body: undefined }) as StrictHttpResponse<void>;
+          return r as StrictHttpResponse<{
+            data?: Array<Post>;
+            pagination?: {
+              total?: number;
+              page?: number;
+              limit?: number;
+              next?: number | null;
+              prev?: number | null;
+            };
+          }>;
         })
       );
   }
@@ -86,8 +106,42 @@ export class PostService extends BaseService {
     sort?: string;
     page?: number;
     limit?: number;
-  }): Observable<void> {
-    return this.postsControllerFindAll$Response(params).pipe(map((r: StrictHttpResponse<void>) => r.body as void));
+  }): Observable<{
+    data?: Array<Post>;
+    pagination?: {
+      total?: number;
+      page?: number;
+      limit?: number;
+      next?: number | null;
+      prev?: number | null;
+    };
+  }> {
+    return this.postsControllerFindAll$Response(params).pipe(
+      map(
+        (
+          r: StrictHttpResponse<{
+            data?: Array<Post>;
+            pagination?: {
+              total?: number;
+              page?: number;
+              limit?: number;
+              next?: number | null;
+              prev?: number | null;
+            };
+          }>
+        ) =>
+          r.body as {
+            data?: Array<Post>;
+            pagination?: {
+              total?: number;
+              page?: number;
+              limit?: number;
+              next?: number | null;
+              prev?: number | null;
+            };
+          }
+      )
+    );
   }
 
   /**

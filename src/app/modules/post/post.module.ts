@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreatePostComponent } from './create-post/create-post.component';
-import { CardPostComponent } from './card-post/card-post.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { CardPostComponent } from './components/card-post/card-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({

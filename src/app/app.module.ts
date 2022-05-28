@@ -26,6 +26,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ApiModule } from './api/api.module';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { STORE_CONFIG } from './app.store.config';
 
 @NgModule({
   imports: [
@@ -41,8 +42,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HomeModule,
     AuthModule,
     Angulartics2Module.forRoot(),
-    ApiModule.forRoot({ rootUrl: environment.serverUrl }),
     SweetAlert2Module.forRoot(),
+    ...STORE_CONFIG,
+    ApiModule.forRoot({ rootUrl: environment.serverUrl }),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],

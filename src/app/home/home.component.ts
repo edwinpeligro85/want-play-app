@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PostModel } from '@app/modules/post/post.model';
+import { Posts, PostsState } from '@app/modules/post/state';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  quote: string | undefined;
-  isLoading = false;
+  @Select(PostsState.posts)
+  public posts$!: Observable<PostModel[]>;
 
-  constructor() {}
+  public isLoading = false;
 
-  ngOnInit() {}
+  constructor(private store: Store) {
+    // this.posts$ = this.store.select<Post[]>((state) => state.posts.posts);
+  }
+
+  ngOnInit() {
+    this.store.dispatch(new Posts.FetchAll());
+  }
 }
