@@ -1,9 +1,9 @@
-import { Post, UpdatePostDto } from '@app/api/models';
+import { CreatePostDto, UpdatePostDto } from '@app/api/models';
 
 export namespace Posts {
   export class Add {
     static readonly type = '[Posts] Add';
-    constructor(public payload: Post) {}
+    constructor(public payload: CreatePostDto) {}
   }
 
   export class Edit {

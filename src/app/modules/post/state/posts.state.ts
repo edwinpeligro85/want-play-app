@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Post } from '@app/api/models';
 import { PostService } from '@app/api/services';
-import { State, Action, StateContext, Selector, StateToken } from '@ngxs/store';
+import { AuthState } from '@app/auth/state';
+import { State, Action, StateContext, Selector, StateToken, Store } from '@ngxs/store';
 import { map, tap } from 'rxjs/operators';
 import { PostModel } from '../post.model';
 import { Posts } from './posts.actions';
 
 export class PostsStateModel {
-  public items!: PostModel[];
+  public items!: Post[];
 }
 
 export const POSTS_STATE_TOKEN = new StateToken<PostsStateModel>('posts');
@@ -22,11 +23,11 @@ const defaults = {
 })
 @Injectable()
 export class PostsState {
-  constructor(private _post: PostService) {}
+  constructor(private _post: PostService, private store: Store) {}
 
   @Selector()
-  static posts(state: PostsStateModel): Post[] {
-    return state.items;
+  static posts(state: PostsStateModel): PostModel[] {
+    return state.items.map((post) => new PostModel(post));
   }
 
   @Action(Posts.FetchAll)
@@ -37,7 +38,7 @@ export class PostsState {
         next: (posts) => {
           if (posts) {
             const state = getState();
-            setState({ items: [...state.items, ...posts.map((post) => new PostModel(post))] });
+            setState({ items: [...state.items, ...posts] });
           }
         },
       })
@@ -46,8 +47,14 @@ export class PostsState {
 
   @Action(Posts.Add)
   add({ getState, setState }: StateContext<PostsStateModel>, { payload }: Posts.Add) {
-    const state = getState();
-    setState({ items: [...state.items] });
+    return this._post.postsControllerCreate({ body: payload }).pipe(
+      tap((post) => {
+        const state = getState();
+        post.owner = this.store.selectSnapshot(AuthState.user).profile;
+
+        setState({ items: [post, ...state.items] });
+      })
+    );
   }
 
   @Action(Posts.Delete)

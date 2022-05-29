@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthState } from '@app/auth/state';
+import { UntilDestroy, untilDestroyed } from '@shared';
 import { Store } from '@ngxs/store';
 import { Posts } from '../../state';
 
+@UntilDestroy()
 @Component({
   selector: 'create-post',
   templateUrl: './create-post.component.html',
@@ -24,10 +27,11 @@ export class CreatePostComponent implements OnInit {
   onSubmit(): void {
     if (this.form.invalid) return;
 
-    console.log(this.form.value);
+    const profile = this.store.selectSnapshot(AuthState.user).profile;
 
     this.store
-      .dispatch(new Posts.Add({ _id: new Date().getTime(), ...this.form.value }))
+      .dispatch(new Posts.Add({ city: profile.city?._id, ...this.form.value }))
+      .pipe(untilDestroyed(this))
       .subscribe(() => this.form.setValue({ type: 'want', body: '' }));
   }
 

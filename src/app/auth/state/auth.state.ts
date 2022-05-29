@@ -63,9 +63,4 @@ export class AuthState {
       .authControllerLogin({ body: { email, password } })
       .pipe(tap(({ accessToken: token, user }) => patchState({ token, user })));
   }
-
-  @Action(Auth.Signout)
-  logout({ setState }: StateContext<AuthStateModel>) {
-    setState({ token: '', user: null });
-  }
 }

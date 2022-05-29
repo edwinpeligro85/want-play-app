@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProfileModel } from '@app/modules/user/profile.model';
+import { Component, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { PostModel } from '../../post.model';
 import { Posts } from '../../state';
@@ -9,13 +8,11 @@ import { Posts } from '../../state';
   templateUrl: './card-post.component.html',
   styleUrls: ['./card-post.component.scss'],
 })
-export class CardPostComponent implements OnInit {
+export class CardPostComponent {
   @Input() public post!: PostModel;
   @Input() public isOwn!: boolean;
 
   constructor(private store: Store) {}
-
-  ngOnInit(): void {}
 
   public removePost() {
     this.store.dispatch(new Posts.Delete(this.post._id));

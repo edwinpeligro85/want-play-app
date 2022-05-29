@@ -17,9 +17,7 @@ export class HomeComponent implements OnInit {
 
   public isLoading = false;
 
-  constructor(private store: Store) {
-    // this.posts$ = this.store.select<Post[]>((state) => state.posts.posts);
-  }
+  constructor(private store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(new Posts.FetchAll());
