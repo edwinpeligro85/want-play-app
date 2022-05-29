@@ -4,6 +4,7 @@ import { AuthState } from '@app/auth/state';
 import { UntilDestroy, untilDestroyed } from '@shared';
 import { Store } from '@ngxs/store';
 import { Posts } from '../../state';
+import { ProfileModel } from '@app/modules/user/profile.model';
 
 @UntilDestroy()
 @Component({
@@ -13,24 +14,29 @@ import { Posts } from '../../state';
 })
 export class CreatePostComponent implements OnInit {
   public form!: FormGroup;
+  public profile: ProfileModel | null;
 
   get typeControl(): AbstractControl {
     return this.form.controls['type'];
   }
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.profile = null;
+  }
 
   ngOnInit(): void {
     this.createForm();
+    this.store
+      .select(AuthState.user)
+      .pipe(untilDestroyed(this))
+      .subscribe((user) => (this.profile = user.profile));
   }
 
   onSubmit(): void {
     if (this.form.invalid) return;
 
-    const profile = this.store.selectSnapshot(AuthState.user).profile;
-
     this.store
-      .dispatch(new Posts.Add({ city: profile.city?._id, ...this.form.value }))
+      .dispatch(new Posts.Add({ city: this.profile?.city?._id, ...this.form.value }))
       .pipe(untilDestroyed(this))
       .subscribe(() => this.form.setValue({ type: 'want', body: '' }));
   }

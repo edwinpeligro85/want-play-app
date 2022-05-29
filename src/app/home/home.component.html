@@ -1,15 +1,19 @@
 <ng-container *ngIf="user$ | async as user">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 row m-0 p-0">
+      <div
+        infiniteScroll
+        (scrolled)="onScroll()"
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        class="col-lg-8 row m-0 p-0"
+      >
         <div class="col-sm-12">
-          <!-- TODO: Add post -->
           <create-post></create-post>
         </div>
 
         <ng-container *ngFor="let post of posts$ | async">
           <div class="col-sm-12">
-            <!-- TODO: List of posts -->
             <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
               <div class="iq-card-body">
                 <card-post [post]="post" [isOwn]="user.profile._id == post.owner._id"></card-post>
@@ -111,7 +115,13 @@
       </div>
 
       <div class="col-sm-12 text-center">
-        <img src="assets/images/page-img/page-load-loader.gif" alt="loader" style="height: 100px" />
+        <ng-container *ngIf="loading$ | async; else noResults">
+          <img src="assets/images/page-img/page-load-loader.gif" alt="loader" style="height: 100px" />
+        </ng-container>
+
+        <ng-template #noResults>
+          <p class="h6 my-5">No more results</p>
+        </ng-template>
       </div>
     </div>
   </div>

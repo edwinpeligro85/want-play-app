@@ -13,14 +13,14 @@ export class AuthStateModel {
   public token!: string;
 }
 
-const defaults = {
+export const AUTH_STATE_DEFAULTS = {
   user: null,
   token: '',
 };
 
 @State<AuthStateModel>({
   name: AUTH_STATE_TOKEN,
-  defaults,
+  defaults: AUTH_STATE_DEFAULTS,
 })
 @Injectable()
 export class AuthState {

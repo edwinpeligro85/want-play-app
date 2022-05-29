@@ -7,9 +7,18 @@ import { SharedModule } from '@shared';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { PostModule } from '@app/modules/post/post.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, SharedModule, Angulartics2Module, HomeRoutingModule, PostModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    SharedModule,
+    Angulartics2Module,
+    HomeRoutingModule,
+    PostModule,
+    InfiniteScrollModule,
+  ],
   declarations: [HomeComponent],
 })
 export class HomeModule {}

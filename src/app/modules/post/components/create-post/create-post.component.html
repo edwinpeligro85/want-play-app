@@ -7,8 +7,9 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="iq-card-body">
     <div class="d-flex align-items-center">
       <div class="user-img">
-        <img src="assets/images/user/1.jpg" alt="userimg" class="avatar-60 rounded-circle" />
+        <img [src]="profile?.pic" [alt]="profile?.nickname" class="avatar-60 rounded-circle" />
       </div>
+
       <div class="post-text ml-3 w-100">
         <textarea
           formControlName="body"

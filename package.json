@@ -63,6 +63,7 @@
     "cordova-plugin-statusbar": "^3.0.0",
     "date-fns": "^2.16.1",
     "ngx-http-request-state": "^1.2.0",
+    "ngx-infinite-scroll": "^13.0.2",
     "rxjs": "^7.4.0",
     "sweetalert2": "^11.4.17",
     "tslib": "^2.3.0",
@@ -147,5 +148,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {}
     }
+  },
+  "scarfSettings": {
+    "enabled": false
   }
 }
