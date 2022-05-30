@@ -29,6 +29,21 @@ textarea.form-control {
   line-height: 22px;
 }
 
+// Init select custom
+.multiselect-item-checkbox input[type="checkbox"] + div:before {
+  color: var(--iq-primary) !important;
+  border: 2px solid var(--iq-primary) !important;
+}
+.multiselect-item-checkbox input[type="checkbox"]:checked + div:before {
+  background: var(--iq-primary) !important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+  border: 1px solid var(--iq-primary) !important;
+  background: var(--iq-primary) !important;
+  max-width: none !important;
+}
+// Fin select custom
+
 .spinner-border {
   width: 1rem;
   height: 1rem;

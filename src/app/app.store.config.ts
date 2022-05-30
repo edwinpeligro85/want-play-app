@@ -2,6 +2,7 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NgxsResetPluginModule } from 'ngxs-reset-plugin';
 import { environment } from '@env/environment';
 import { PostsState } from './modules/post/state';
 import { AuthState } from './auth/state';
@@ -11,6 +12,7 @@ export const STORE_CONFIG = [
   NgxsStoragePluginModule.forRoot({
     key: ['auth.token'],
   }),
+  NgxsResetPluginModule.forRoot(),
   NgxsReduxDevtoolsPluginModule.forRoot({
     disabled: environment.production,
   }),

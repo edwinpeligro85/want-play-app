@@ -13,7 +13,7 @@ import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { I18nService } from '@app/i18n';
 import { Actions, ofActionDispatched, Store } from '@ngxs/store';
 import { Auth } from './auth/state';
-import { DEFAULTS_STATES } from './@shared/state';
+import { StateResetAll } from 'ngxs-reset-plugin';
 
 const log = new Logger('App');
 
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.actions.pipe(ofActionDispatched(Auth.Signout)).subscribe(() => {
       this.router.navigate(['/auth/sign-in']);
-      this.store.reset(DEFAULTS_STATES);
+      this.store.dispatch(new StateResetAll());
     });
 
     log.debug('init');

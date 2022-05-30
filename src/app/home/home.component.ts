@@ -1,26 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthState } from '@app/auth/state';
 import { PostModel } from '@app/modules/post/post.model';
 import { Posts, PostsState } from '@app/modules/post/state';
 import { UserModel } from '@app/modules/user/user.model';
 import { Select, Store } from '@ngxs/store';
+import { StateReset } from 'ngxs-reset-plugin';
 import { Observable } from 'rxjs';
+import { UntilDestroy, untilDestroyed } from '@shared';
+
+@UntilDestroy()
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  @Select(AuthState.user) user$!: Observable<UserModel>;
+export class HomeComponent implements OnInit, OnDestroy {
   @Select(PostsState.posts) posts$!: Observable<PostModel[]>;
   @Select(PostsState.loading) loading$!: Observable<boolean>;
 
-  public isLoading = false;
+  public user: UserModel | null = null;
 
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.loadPosts();
+    this.store
+      .select(AuthState.user)
+      .pipe(untilDestroyed(this))
+      .subscribe((user) => {
+        this.user = user;
+        this.loadPosts();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new StateReset(PostsState));
   }
 
   onScroll() {
@@ -36,6 +49,7 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(
       new Posts.FetchAll({
         sort: '-created_at',
+        filter: JSON.stringify({ city: { $eq: this.user?.profile.city?._id } }),
       })
     );
   }

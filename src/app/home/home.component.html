@@ -1,29 +1,35 @@
-<ng-container *ngIf="user$ | async as user">
+<ng-container *ngIf="user">
   <div class="container">
     <div class="row">
-      <div
-        infiniteScroll
-        (scrolled)="onScroll()"
-        [infiniteScrollDistance]="2"
-        [infiniteScrollThrottle]="50"
-        class="col-lg-8 row m-0 p-0"
-      >
-        <div class="col-sm-12">
-          <create-post></create-post>
-        </div>
-
-        <ng-container *ngFor="let post of posts$ | async">
+      <ng-container *ngIf="user.profile.city">
+        <div
+          infiniteScroll
+          (scrolled)="onScroll()"
+          [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="50"
+          class="col-lg-8 row m-0 p-0"
+        >
           <div class="col-sm-12">
-            <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
-              <div class="iq-card-body">
-                <card-post [post]="post" [isOwn]="user.profile._id == post.owner._id"></card-post>
+            <create-post></create-post>
+          </div>
+
+          <ng-container *ngFor="let post of posts$ | async">
+            <div class="col-sm-12">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                <div class="iq-card-body">
+                  <card-post [post]="post" [isOwn]="user.profile._id == post.owner._id"></card-post>
+                </div>
               </div>
             </div>
-          </div>
-        </ng-container>
-      </div>
+          </ng-container>
+        </div>
+      </ng-container>
 
       <div class="col-lg-4">
+        <ng-container *ngIf="user.profile.city">
+          <home-post-filter [city]="user.profile.city"></home-post-filter>
+        </ng-container>
+
         <div class="iq-card">
           <div class="iq-card-header d-flex justify-content-between">
             <div class="iq-header-title">

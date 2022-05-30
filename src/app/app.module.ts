@@ -29,6 +29,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { STORE_CONFIG } from './app.store.config';
 import { appInitializer } from './app.initializer';
 import { Store } from '@ngxs/store';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { Store } from '@ngxs/store';
     SweetAlert2Module.forRoot(),
     ...STORE_CONFIG,
     ApiModule.forRoot({ rootUrl: environment.serverUrl }),
+    NgMultiSelectDropDownModule.forRoot(),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
