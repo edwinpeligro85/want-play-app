@@ -90,10 +90,26 @@ export class PostsState {
     );
   }
 
+  @Action(Posts.Edit)
+  update({ getState, patchState }: StateContext<PostsStateModel>, { id, payload: body }: Posts.Edit) {
+    return this._post.postsControllerUpdate({ id, body }).pipe(
+      tap((post) => {
+        const state = getState();
+        post.owner = state.items.find((item) => item._id === id)?.owner ?? post.owner;
+
+        patchState({ items: state.items.map((item) => (item._id === id ? post : item)) });
+      })
+    );
+  }
+
   @Action(Posts.Delete)
   delete({ getState, patchState }: StateContext<PostsStateModel>, { id }: Posts.Delete) {
-    patchState({
-      items: getState().items.filter((post) => post._id !== id),
-    });
+    return this._post.postsControllerRemove({ id }).pipe(
+      tap(() => {
+        patchState({
+          items: getState().items.filter((post) => post._id !== id),
+        });
+      })
+    );
   }
 }

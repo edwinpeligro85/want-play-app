@@ -14,7 +14,17 @@ export class CardPostComponent {
 
   constructor(private store: Store) {}
 
+  public updatePost(body: string) {
+    if (this.post.body === body) return;
+
+    this.store.dispatch(new Posts.Edit(this.post._id, { body }));
+  }
+
   public removePost() {
     this.store.dispatch(new Posts.Delete(this.post._id));
+  }
+
+  public inputBodyValidator(value: string): string | null {
+    return null;
   }
 }

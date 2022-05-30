@@ -7,8 +7,10 @@ export interface Post {
   _id: string;
   body: string;
   city: City;
+  createdAt: string;
   owner: Profile;
   requests: Array<PostRequest>;
   status: 'open' | 'pause' | 'finished';
   type: 'want' | 'need';
+  updatedAt: string;
 }
