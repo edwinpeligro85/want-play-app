@@ -4,10 +4,11 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { CardPostComponent } from './components/card-post/card-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [CreatePostComponent, CardPostComponent],
-  imports: [CommonModule, ReactiveFormsModule, SweetAlert2Module],
+  imports: [CommonModule, ReactiveFormsModule, SweetAlert2Module, NgxLoadingModule],
   exports: [CreatePostComponent, CardPostComponent],
 })
 export class PostModule {}

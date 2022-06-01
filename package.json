@@ -66,6 +66,7 @@
     "ng-multiselect-dropdown": "^0.3.8",
     "ngx-http-request-state": "^1.2.0",
     "ngx-infinite-scroll": "^13.0.2",
+    "ngx-loading": "^13.0.0",
     "ngxs-reset-plugin": "^2.0.0",
     "rxjs": "^7.4.0",
     "sweetalert2": "^11.4.17",

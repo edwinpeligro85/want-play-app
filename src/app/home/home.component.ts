@@ -5,7 +5,7 @@ import { Posts, PostsState } from '@app/modules/post/state';
 import { UserModel } from '@app/modules/user/user.model';
 import { Select, Store } from '@ngxs/store';
 import { StateReset } from 'ngxs-reset-plugin';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { UntilDestroy, untilDestroyed } from '@shared';
 
 @UntilDestroy()
@@ -25,9 +25,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.store
       .select(AuthState.user)
-      .pipe(untilDestroyed(this))
+      .pipe(
+        filter((user) => !!user),
+        untilDestroyed(this)
+      )
       .subscribe((user) => {
         this.user = user;
+
+        this.store.dispatch(new Posts.SetFilter(JSON.stringify({ city: { $eq: user?.profile.city?._id } })));
         this.loadPosts();
       });
   }
@@ -46,11 +51,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private loadPosts(): void {
-    this.store.dispatch(
-      new Posts.FetchAll({
-        sort: '-created_at',
-        filter: JSON.stringify({ city: { $eq: this.user?.profile.city?._id } }),
-      })
-    );
+    this.store.dispatch(new Posts.FetchAll({ sort: '-created_at' }));
   }
 }

@@ -1,3 +1,5 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+
 <div class="post-item">
   <div class="user-post-data p-3">
     <div class="d-flex flex-wrap">
@@ -46,14 +48,14 @@
             </a>
 
             <!-- <a class="dropdown-item p-3" href="#">
-              <div class="d-flex align-items-top">
-                <div class="icon font-size-20"><i class="ri-close-circle-line"></i></div>
-                <div class="data ml-2">
-                  <h6>Hide From Timeline</h6>
-                  <p class="mb-0">See fewer posts like this.</p>
+                <div class="d-flex align-items-top">
+                  <div class="icon font-size-20"><i class="ri-close-circle-line"></i></div>
+                  <div class="data ml-2">
+                    <h6>Hide From Timeline</h6>
+                    <p class="mb-0">See fewer posts like this.</p>
+                  </div>
                 </div>
-              </div>
-            </a> -->
+              </a> -->
 
             <a
               class="dropdown-item p-3"
@@ -82,77 +84,77 @@
     <div class="d-flex justify-content-between align-items-center">
       <div class="like-block position-relative d-flex align-items-center">
         <!-- <div class="d-flex align-items-center">
-          <div class="like-data">
-            <div class="dropdown">
-              <span
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                role="button"
-              >
-                <img src="assets/images/icon/01.png" class="img-fluid" alt="" />
-              </span>
-              <div class="dropdown-menu">
-                <a
-                  class="ml-2 mr-2"
-                  href="#"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title=""
-                  data-original-title="Like"
-                  ><img src="assets/images/icon/01.png" class="img-fluid" alt=""
-                /></a>
-                <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Love"
-                  ><img src="assets/images/icon/02.png" class="img-fluid" alt=""
-                /></a>
-                <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Happy"
-                  ><img src="assets/images/icon/03.png" class="img-fluid" alt=""
-                /></a>
-                <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="HaHa"
-                  ><img src="assets/images/icon/04.png" class="img-fluid" alt=""
-                /></a>
-                <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Think"
-                  ><img src="assets/images/icon/05.png" class="img-fluid" alt=""
-                /></a>
-                <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sade"
-                  ><img src="assets/images/icon/06.png" class="img-fluid" alt=""
-                /></a>
-                <a
-                  class="mr-2"
-                  href="#"
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  title=""
-                  data-original-title="Lovely"
-                  ><img src="assets/images/icon/07.png" class="img-fluid" alt=""
-                /></a>
+            <div class="like-data">
+              <div class="dropdown">
+                <span
+                  class="dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  role="button"
+                >
+                  <img src="assets/images/icon/01.png" class="img-fluid" alt="" />
+                </span>
+                <div class="dropdown-menu">
+                  <a
+                    class="ml-2 mr-2"
+                    href="#"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title=""
+                    data-original-title="Like"
+                    ><img src="assets/images/icon/01.png" class="img-fluid" alt=""
+                  /></a>
+                  <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Love"
+                    ><img src="assets/images/icon/02.png" class="img-fluid" alt=""
+                  /></a>
+                  <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Happy"
+                    ><img src="assets/images/icon/03.png" class="img-fluid" alt=""
+                  /></a>
+                  <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="HaHa"
+                    ><img src="assets/images/icon/04.png" class="img-fluid" alt=""
+                  /></a>
+                  <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Think"
+                    ><img src="assets/images/icon/05.png" class="img-fluid" alt=""
+                  /></a>
+                  <a class="mr-2" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sade"
+                    ><img src="assets/images/icon/06.png" class="img-fluid" alt=""
+                  /></a>
+                  <a
+                    class="mr-2"
+                    href="#"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title=""
+                    data-original-title="Lovely"
+                    ><img src="assets/images/icon/07.png" class="img-fluid" alt=""
+                  /></a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="total-like-block ml-2 mr-3">
-            <div class="dropdown">
-              <span
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                role="button"
-              >
-                140 Likes
-              </span>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Max Emum</a>
-                <a class="dropdown-item" href="#">Bill Yerds</a>
-                <a class="dropdown-item" href="#">Hap E. Birthday</a>
-                <a class="dropdown-item" href="#">Tara Misu</a>
-                <a class="dropdown-item" href="#">Midge Itz</a>
-                <a class="dropdown-item" href="#">Sal Vidge</a>
-                <a class="dropdown-item" href="#">Other</a>
+            <div class="total-like-block ml-2 mr-3">
+              <div class="dropdown">
+                <span
+                  class="dropdown-toggle"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  role="button"
+                >
+                  140 Likes
+                </span>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Max Emum</a>
+                  <a class="dropdown-item" href="#">Bill Yerds</a>
+                  <a class="dropdown-item" href="#">Hap E. Birthday</a>
+                  <a class="dropdown-item" href="#">Tara Misu</a>
+                  <a class="dropdown-item" href="#">Midge Itz</a>
+                  <a class="dropdown-item" href="#">Sal Vidge</a>
+                  <a class="dropdown-item" href="#">Other</a>
+                </div>
               </div>
             </div>
-          </div>
-        </div> -->
+          </div> -->
         <div class="total-comment-block">
           <div class="dropdown">
             <span
@@ -164,14 +166,12 @@
             >
               {{ post.requests.length }} Request's
             </span>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Max Emum</a>
-              <a class="dropdown-item" href="#">Bill Yerds</a>
-              <a class="dropdown-item" href="#">Hap E. Birthday</a>
-              <a class="dropdown-item" href="#">Tara Misu</a>
-              <a class="dropdown-item" href="#">Midge Itz</a>
-              <a class="dropdown-item" href="#">Sal Vidge</a>
-              <a class="dropdown-item" href="#">Other</a>
+
+            <div *ngIf="post.requests.length > 0" class="dropdown-menu">
+              <a *ngFor="let request of post.requests | slice: 0:6" class="dropdown-item" href="#">{{
+                request.owner.nickname
+              }}</a>
+              <a *ngIf="post.requests.length > 6" class="dropdown-item" href="#">Others</a>
             </div>
           </div>
         </div>
@@ -182,7 +182,8 @@
 
     <div class="share-block d-flex align-items-center justify-content-between feather-icon mr-3">
       <p class="mb-0">{{ post.city.name | titlecase }}</p>
-      <button *ngIf="!isOwn" class="btn-primary btn">Request</button>
+      <button *ngIf="!isOwn && !iHasRequested" (click)="sendRequest()" class="btn-primary btn">Request</button>
+      <span *ngIf="iHasRequested" class="badge badge-primary">Requested</span>
       <!-- <a href="javascript:void();"><i class="ri-share-line"></i> <span class="ml-1">99 Share</span></a> -->
     </div>
   </div>

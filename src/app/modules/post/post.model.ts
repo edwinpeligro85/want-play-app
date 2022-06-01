@@ -25,6 +25,10 @@ export class PostModel implements Post {
     return formatDistanceToNow(new Date(this.createdAt), { addSuffix: true, locale: es });
   }
 
+  get requestsIds(): string[] {
+    return this.requests.map((request) => request.owner._id);
+  }
+
   constructor(data: Partial<Post> = {}) {
     Object.assign(this, data);
   }

@@ -17,7 +17,11 @@
             <div class="col-sm-12">
               <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
                 <div class="iq-card-body">
-                  <card-post [post]="post" [isOwn]="user.profile._id == post.owner._id"></card-post>
+                  <card-post
+                    [post]="post"
+                    [isOwn]="user.profile._id == post.owner._id"
+                    [iHasRequested]="post.requestsIds.includes(user.profile._id)"
+                  ></card-post>
                 </div>
               </div>
             </div>

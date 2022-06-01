@@ -12,6 +12,7 @@ export class PostsStateModel {
   public page!: number;
   public total!: number;
   public items!: Post[];
+  public filter!: string;
   public loading!: boolean;
 }
 
@@ -22,6 +23,7 @@ export const POSTS_STATE_DEFAULTS = {
   page: -1,
   total: 0,
   items: [],
+  filter: '',
   loading: false,
 };
 
@@ -58,7 +60,7 @@ export class PostsState {
     const state = getState();
     patchState({ loading: true });
 
-    return this._post.postsControllerFindAll({ ...payload, page: state.next }).pipe(
+    return this._post.postsControllerFindAll({ ...payload, page: state.next, filter: state.filter }).pipe(
       tap(({ pagination }) => {
         patchState({
           next: pagination?.next ?? state.next,
@@ -111,5 +113,32 @@ export class PostsState {
         });
       })
     );
+  }
+
+  @Action(Posts.SendRequest)
+  sendRequest({ getState, patchState }: StateContext<PostsStateModel>, { id }: Posts.SendRequest) {
+    const profile = this.store.selectSnapshot(AuthState.user).profile;
+
+    return this._post.postsControllerSendRequest({ id, target: profile._id }).pipe(
+      tap((postRequest) => {
+        postRequest.owner = profile;
+
+        const state = getState();
+        patchState({
+          items: state.items.map((item) => {
+            if (item._id === id) {
+              return { ...item, requests: [...item.requests, postRequest] };
+            }
+
+            return item;
+          }),
+        });
+      })
+    );
+  }
+
+  @Action(Posts.SetFilter)
+  setFilter({ patchState }: StateContext<PostsStateModel>, { filter }: Posts.SetFilter) {
+    patchState({ filter });
   }
 }

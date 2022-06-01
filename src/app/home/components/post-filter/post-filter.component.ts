@@ -69,11 +69,7 @@ export class PostFilterComponent implements OnInit {
     };
 
     this.store.dispatch(new StateReset(PostsState));
-    this.store.dispatch(
-      new Posts.FetchAll({
-        sort: '-created_at',
-        filter: JSON.stringify(filter),
-      })
-    );
+    this.store.dispatch(new Posts.SetFilter(JSON.stringify(filter)));
+    this.store.dispatch(new Posts.FetchAll({ sort: '-created_at' }));
   }
 }

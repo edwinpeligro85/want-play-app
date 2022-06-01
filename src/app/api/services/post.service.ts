@@ -11,6 +11,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { CreatePostDto } from '../models/create-post-dto';
 import { Post } from '../models/post';
+import { PostRequest } from '../models/post-request';
 import { UpdatePostDto } from '../models/update-post-dto';
 
 @Injectable({
@@ -311,5 +312,53 @@ export class PostService extends BaseService {
    */
   postsControllerUpdate(params: { id: string; body: UpdatePostDto }): Observable<Post> {
     return this.postsControllerUpdate$Response(params).pipe(map((r: StrictHttpResponse<Post>) => r.body as Post));
+  }
+
+  /**
+   * Path part for operation postsControllerSendRequest
+   */
+  static readonly PostsControllerSendRequestPath = '/api/v1/posts/{id}/requests/{target}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `postsControllerSendRequest()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerSendRequest$Response(params: {
+    id: string;
+    target: string;
+  }): Observable<StrictHttpResponse<PostRequest>> {
+    const rb = new RequestBuilder(this.rootUrl, PostService.PostsControllerSendRequestPath, 'put');
+    if (params) {
+      rb.path('id', params.id, {});
+      rb.path('target', params.target, {});
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<PostRequest>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `postsControllerSendRequest$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  postsControllerSendRequest(params: { id: string; target: string }): Observable<PostRequest> {
+    return this.postsControllerSendRequest$Response(params).pipe(
+      map((r: StrictHttpResponse<PostRequest>) => r.body as PostRequest)
+    );
   }
 }

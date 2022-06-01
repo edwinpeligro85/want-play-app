@@ -18,7 +18,6 @@ export namespace Posts {
       public payload?: {
         filter?: string;
         sort?: string;
-        page?: number;
         limit?: number;
       }
     ) {}
@@ -27,5 +26,15 @@ export namespace Posts {
   export class Delete {
     static readonly type = '[Posts] Delete';
     constructor(public id: string) {}
+  }
+
+  export class SendRequest {
+    static readonly type = '[Posts] Send Request';
+    constructor(public id: string) {}
+  }
+
+  export class SetFilter {
+    static readonly type = '[Posts] Set Filter';
+    constructor(public filter: string) {}
   }
 }
