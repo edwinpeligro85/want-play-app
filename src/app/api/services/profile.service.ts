@@ -9,6 +9,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { Chat } from '../models/chat';
 import { Profile } from '../models/profile';
 import { ProfileResponseDto } from '../models/profile-response-dto';
 import { UpdateProfileDto } from '../models/update-profile-dto';
@@ -298,6 +299,50 @@ export class ProfileService extends BaseService {
   profileControllerFollowingCount(params: { id: string }): Observable<number> {
     return this.profileControllerFollowingCount$Response(params).pipe(
       map((r: StrictHttpResponse<number>) => r.body as number)
+    );
+  }
+
+  /**
+   * Path part for operation profileControllerFindChats
+   */
+  static readonly ProfileControllerFindChatsPath = '/api/v1/profile/{id}/chats';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `profileControllerFindChats()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  profileControllerFindChats$Response(params: { id: string }): Observable<StrictHttpResponse<Array<Chat>>> {
+    const rb = new RequestBuilder(this.rootUrl, ProfileService.ProfileControllerFindChatsPath, 'get');
+    if (params) {
+      rb.path('id', params.id, {});
+    }
+
+    return this.http
+      .request(
+        rb.build({
+          responseType: 'json',
+          accept: 'application/json',
+        })
+      )
+      .pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<Array<Chat>>;
+        })
+      );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `profileControllerFindChats$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  profileControllerFindChats(params: { id: string }): Observable<Array<Chat>> {
+    return this.profileControllerFindChats$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<Chat>>) => r.body as Array<Chat>)
     );
   }
 

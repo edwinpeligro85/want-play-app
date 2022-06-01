@@ -46,7 +46,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.actions.pipe(ofActionDispatched(Auth.Signout)).subscribe(() => {
       this.router.navigate(['/auth/sign-in']);
-      this.store.dispatch(new StateResetAll());
+
+      setTimeout(() => this.store.dispatch(new StateResetAll()), 300);
     });
 
     log.debug('init');

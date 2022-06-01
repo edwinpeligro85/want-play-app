@@ -4,3 +4,4 @@ export { UserService } from './services/user.service';
 export { ProfileService } from './services/profile.service';
 export { PostService } from './services/post.service';
 export { LocationService } from './services/location.service';
+export { ChatService } from './services/chat.service';
