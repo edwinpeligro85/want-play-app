@@ -6,6 +6,7 @@ import { State, Action, StateContext, Store, Selector } from '@ngxs/store';
 import { finalize, tap } from 'rxjs';
 import { Chat } from './chat.actions';
 import { ChatModel as ChatCustomModel } from '../chat.model';
+import { MessagesGroup } from './interfaces';
 
 export class ChatStateModel {
   public chat!: ChatModel | null;
@@ -30,8 +31,37 @@ export class ChatState {
   constructor(private _chat: ChatService, private _profile: ProfileService, private store: Store) {}
 
   @Selector()
+  static chat(state: ChatStateModel): ChatModel | null {
+    return state.chat;
+  }
+
+  @Selector()
   static chats(state: ChatStateModel): ChatCustomModel[] {
     return state.chats.map((chat) => new ChatCustomModel(chat));
+  }
+
+  @Selector()
+  static messages(state: ChatStateModel): Message[] {
+    return state.messages;
+  }
+
+  @Selector()
+  static messagesGroup(state: ChatStateModel): MessagesGroup[] {
+    const GROUPS = state.messages.reduce((groups, message) => {
+      const date = message.createdAt.split('T')[0];
+
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(message);
+      return groups;
+    }, {});
+
+    // Edit: to add it in the array format instead
+    return Object.keys(GROUPS).map((date) => ({
+      date,
+      messages: GROUPS[date],
+    }));
   }
 
   @Action(Chat.FetchAll)

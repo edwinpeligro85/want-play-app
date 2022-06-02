@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ChatService } from '@app/api/services';
 import { AuthState } from '@app/auth/state';
 import { Store } from '@ngxs/store';
+import { ChatState } from '../../state';
 
 @Component({
   selector: 'chat-pane-footer',
@@ -25,14 +26,17 @@ export class ChatPaneFooterComponent implements OnInit {
   sendMessage() {
     if (this.messageControl.invalid) return;
 
+    const chat = this.store.selectSnapshot(ChatState.chat);
     const profile = this.store.selectSnapshot(AuthState.profile);
 
-    return this._chat.chatControllerCreateMessage({
-      id: '',
-      body: {
-        from: profile._id,
-        message: this.messageControl.value,
-      },
-    });
+    this._chat
+      .chatControllerCreateMessage({
+        id: chat?._id ?? '',
+        body: {
+          from: profile._id,
+          message: this.messageControl.value,
+        },
+      })
+      .subscribe(() => this.messageControl.reset());
   }
 }
