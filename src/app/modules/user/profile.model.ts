@@ -6,12 +6,15 @@ export class ProfileModel implements Profile {
   age?: number;
   user!: UserModel;
   city?: City;
+  posts: number = 0;
   gender?: 'male' | 'female';
   aboutMe?: string;
   nickname?: string;
   createdAt: string = new Date().toJSON();
   updatedAt: string = new Date().toJSON();
   birthDate?: string;
+  followers: number = 0;
+  following: number = 0;
   socialMedias: {}[] = [];
 
   get pic(): string {

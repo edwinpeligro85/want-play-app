@@ -6,22 +6,22 @@
           <div class="profile-header">
             <div class="cover-container">
               <img src="assets/images/page-img/profile-bg1.jpg" alt="profile-bg" class="rounded img-fluid" />
-              <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
+              <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0" style="z-index: 1">
                 <li>
-                  <a href="javascript:void();"><i class="ri-pencil-line"></i></a>
+                  <a [routerLink]="['/user/profile-edit']" class="pointer"><i class="ri-pencil-line"></i></a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="javascript:void();"><i class="ri-settings-4-line"></i></a>
-                </li>
+                </li> -->
               </ul>
             </div>
 
             <div class="user-detail text-center mb-3">
               <div class="profile-img">
-                <img src="assets/images/logo.png" alt="profile-img" class="avatar-130 img-fluid" />
+                <img [src]="user.pic" alt="profile-img" class="avatar-130 img-fluid" />
               </div>
               <div class="profile-detail">
-                <h3 class="">Edwin Serna</h3>
+                <h3 class="">{{ user.fullName }}</h3>
               </div>
             </div>
 
@@ -50,22 +50,22 @@
                 </ul>
               </div>
 
-              <!-- <div class="social-info">
+              <div class="social-info">
                 <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
                   <li class="text-center pl-3">
                     <h6>Posts</h6>
-                    <p class="mb-0">690</p>
+                    <p class="mb-0">{{ user.profile.posts }}</p>
                   </li>
                   <li class="text-center pl-3">
                     <h6>Followers</h6>
-                    <p class="mb-0">206</p>
+                    <p class="mb-0">{{ user.profile.followers }}</p>
                   </li>
                   <li class="text-center pl-3">
                     <h6>Following</h6>
-                    <p class="mb-0">100</p>
+                    <p class="mb-0">{{ user.profile.following }}</p>
                   </li>
                 </ul>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
