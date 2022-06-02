@@ -8,6 +8,7 @@ import { ChatSidebarChannelComponent } from './components/chat-sidebar-channel/c
 import { ChatPaneHeadComponent } from './components/chat-pane-head/chat-pane-head.component';
 import { ChatPaneContentComponent } from './components/chat-pane-content/chat-pane-content.component';
 import { ChatPaneFooterComponent } from './components/chat-pane-footer/chat-pane-footer.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { ChatPaneFooterComponent } from './components/chat-pane-footer/chat-pane
     ChatPaneContentComponent,
     ChatPaneFooterComponent,
   ],
-  imports: [CommonModule, ChatRoutingModule],
+  imports: [CommonModule, ChatRoutingModule, ReactiveFormsModule],
 })
 export class ChatModule {}

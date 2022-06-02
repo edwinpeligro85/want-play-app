@@ -14,6 +14,9 @@ import { I18nService } from '@app/i18n';
 import { Actions, ofActionDispatched, Store } from '@ngxs/store';
 import { Auth } from './auth/state';
 import { StateResetAll } from 'ngxs-reset-plugin';
+import { Socket } from 'ngx-socket-io';
+import { Message } from './api/models';
+import { Chat } from './modules/chat/state/chat.actions';
 
 const log = new Logger('App');
 
@@ -35,7 +38,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private splashScreen: SplashScreen,
     private i18nService: I18nService,
     private actions: Actions,
-    private store: Store
+    private store: Store,
+    private socket: Socket
   ) {}
 
   async ngOnInit() {
@@ -85,6 +89,9 @@ export class AppComponent implements OnInit, OnDestroy {
       },
       false
     );
+
+    this.socket.connect();
+    this.socket.fromEvent<Message>('message').subscribe((message) => this.store.dispatch(new Chat.Add(message)));
   }
 
   ngOnDestroy() {

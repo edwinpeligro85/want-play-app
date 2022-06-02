@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '@app/api/models';
 import { AuthService } from '@app/api/services';
+import { ProfileModel } from '@app/modules/user/profile.model';
 import { UserModel } from '@app/modules/user/user.model';
 import { State, Action, StateContext, Selector, StateToken } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
@@ -39,6 +40,11 @@ export class AuthState {
   @Selector()
   static user(state: AuthStateModel): UserModel {
     return new UserModel(state.user ?? {});
+  }
+
+  @Selector()
+  static profile(state: AuthStateModel): ProfileModel {
+    return new ProfileModel(state.user?.profile ?? {});
   }
 
   @Action(Auth.LoadUser)

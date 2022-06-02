@@ -1,156 +1,17 @@
 <div class="chat-sidebar-channel scroller mt-4 pl-3">
-  <h5 class="">Public Channels</h5>
-  <ul class="iq-chat-ui nav flex-column nav-pills">
-    <li>
-      <a data-toggle="pill" href="#chatbox1">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/05.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Team Discussions</h6>
-            <span>Lorem Ipsum is</span>
-          </div>
-          <div class="chat-meta float-right text-center mt-2 mr-1">
-            <div class="chat-msg-counter bg-primary text-white">20</div>
-            <span class="text-nowrap">05 min</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox2">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/06.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Announcement</h6>
-            <span>This Sunday we</span>
-          </div>
-          <div class="chat-meta float-right text-center mt-2 mr-1">
-            <div class="chat-msg-counter bg-primary text-white">10</div>
-            <span class="text-nowrap">10 min</span>
-          </div>
-        </div>
-      </a>
-    </li>
-  </ul>
-  <h5 class="mt-3">Private Channels</h5>
-  <ul class="iq-chat-ui nav flex-column nav-pills">
-    <li>
-      <a data-toggle="pill" href="#chatbox3">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/07.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-warning"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Designer</h6>
-            <span>There are many </span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox4">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/08.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Developer</h6>
-            <span>passages of Lorem</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox5">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/09.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-info"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Testing Team</h6>
-            <span>Lorem Ipsum used</span>
-          </div>
-        </div>
-      </a>
-    </li>
-  </ul>
   <h5 class="mt-3">Direct Message</h5>
+
   <ul class="iq-chat-ui nav flex-column nav-pills">
-    <li>
-      <a data-toggle="pill" href="#chatbox6">
+    <li *ngFor="let chat of chats$ | async">
+      <a data-toggle="pill" href="#chatbox1" (click)="openChat(chat._id)">
         <div class="d-flex align-items-center">
           <div class="avatar mr-2">
-            <img src="assets/images/user/10.jpg" alt="chatuserimage" class="avatar-50" />
+            <img [src]="chat.pic" alt="chatuserimage" class="avatar-50" />
             <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-dark"></i></span>
           </div>
           <div class="chat-sidebar-name">
-            <h6 class="mb-0">Paul Molive</h6>
-            <span>translation by</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox7">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/05.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-success"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Paige Turner</h6>
-            <span>Lorem Ipsum which</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox8">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/06.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-primary"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Barb Ackue</h6>
-            <span>simply random text</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox9">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/07.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-danger"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Maya Didas</h6>
-            <span> but also the leap</span>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li>
-      <a data-toggle="pill" href="#chatbox10">
-        <div class="d-flex align-items-center">
-          <div class="avatar mr-2">
-            <img src="assets/images/user/08.jpg" alt="chatuserimage" class="avatar-50" />
-            <span class="avatar-status"><i class="ri-checkbox-blank-circle-fill text-warning"></i></span>
-          </div>
-          <div class="chat-sidebar-name">
-            <h6 class="mb-0">Monty Carlo</h6>
-            <span>Contrary to popular</span>
+            <h6 class="mb-0">{{ chat.membersNames }}</h6>
+            <!-- <span>translation by</span> -->
           </div>
         </div>
       </a>
