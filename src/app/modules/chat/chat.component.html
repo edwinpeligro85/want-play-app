@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="iq-card">
+        <div class="iq-card-body chat-page p-0">
+          <div class="chat-data-block">
+            <div class="row">
+              <div class="col-lg-3 chat-data-left scroller">
+                <chat-search></chat-search>
+
+                <chat-sidebar-channel></chat-sidebar-channel>
+              </div>
+
+              <div class="col-lg-9 chat-data p-0 chat-data-right">
+                <div class="tab-content">
+                  <div class="tab-pane fade active show" id="default-block" role="tabpanel">
+                    <div class="chat-start">
+                      <span class="iq-start-icon text-primary"><i class="ri-message-3-line"></i></span>
+                      <button id="chat-start" class="btn bg-white mt-3">Start Conversation!</button>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade" id="chatbox1" role="tabpanel">
+                    <chat-pane-head></chat-pane-head>
+
+                    <chat-pane-content></chat-pane-content>
+
+                    <chat-pane-footer></chat-pane-footer>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

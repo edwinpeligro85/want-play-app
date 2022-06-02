@@ -49,6 +49,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngxs/storage-plugin": "^3.7.3",
     "@ngxs/store": "^3.7.3",
+    "@ngxs/websocket-plugin": "^3.7.3",
     "@popperjs/core": "^2.11.0",
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
     "angulartics2": "^11.0.0",

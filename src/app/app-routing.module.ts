@@ -6,6 +6,7 @@ const routes: Routes = [
   Shell.childRoutes([
     { path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule) },
     { path: 'user', loadChildren: () => import('./modules/user/user.module').then((m) => m.UserModule) },
+    { path: 'chat', loadChildren: () => import('./modules/chat/chat.module').then((m) => m.ChatModule) },
   ]),
   // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' },
