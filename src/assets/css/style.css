@@ -3854,7 +3854,7 @@ ul.user-status {
 #user-detail-popup {
   position: absolute;
   top: 0;
-  width: 310px;
+  min-width: 245px;
   background: var(--iq-white);
   right: 0;
   overflow: hidden;

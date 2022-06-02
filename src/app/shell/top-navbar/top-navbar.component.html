@@ -293,7 +293,7 @@
                 <div class="iq-card-body p-0">
                   <div class="bg-primary p-3 line-height">
                     <h5 class="mb-0 text-white line-height">Hello, {{ user.fullName }}</h5>
-                    <span class="text-white font-size-12">Available</span>
+                    <span class="text-white font-size-12">{{ user.profile.nickname }}</span>
                   </div>
 
                   <a [routerLink]="['/user/profile']" routerLinkActive="active" class="iq-sub-card iq-bg-primary-hover">
